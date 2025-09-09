@@ -3,13 +3,18 @@ import "./App.css";
 import Aside from "./aside.jsx";
 import Todo from "./todo.jsx";
 import Notes from "./notes.jsx";
+import HamburgerIcon from "./hamburgerIcon.jsx";
 
 export default function App() {
   const [tab, setTab] = useState("todos");
+  const [open, setOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gray-50 w-full">
-      <header className="bg-white shadow p-4 flex justify-between items-center">
-        <div className="text-lg font-semibold">MyNotesApp</div>
+      <header className="bg-white shadow p-4 flex items-center justify-between">
+        {tab === "todos" && (
+          <HamburgerIcon onClick={() => setOpen(!open)} isOpen={open} />
+        )}
+        <div className="text-lg font-semibold text-red-500">DoNoTo</div>
         <nav className="space-x-2">
           <button
             className={`px-3 py-1 rounded transition-colors duration-200 ${
@@ -34,7 +39,7 @@ export default function App() {
         </nav>
       </header>
       <div className="flex">
-        {tab === "todos" && <Aside tab={tab} />}
+        {tab === "todos" && open && <Aside tab={tab} />}
         <main className="flex-1 p-8">
           {tab === "todos" ? <Todo /> : <Notes />}
         </main>

@@ -2,12 +2,19 @@ export default function TodoApp() {
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
+        {" "}
         <h2 className="text-2xl font-bold text-blue-500">To-Dos</h2>
-        <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition">
-          Add Note
-        </button>
         <span className="text-sm text-gray-500">2 tasks</span>
+        <div className="flex gap-2">
+          <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition">
+            Add ToDo
+          </button>
+          <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition">
+            Add Checklist
+          </button>
+        </div>
       </div>
+
       <ul className="space-y-4 grid grid-cols-4 gap-4 justify-center items-center">
         <li className="flex items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition">
           <input type="checkbox" className="accent-blue-600 w-5 h-5" />
