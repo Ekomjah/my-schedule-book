@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
+import { faTableList } from "@fortawesome/free-solid-svg-icons";
 export default function TodoApp() {
   return (
     <section>
@@ -6,11 +9,17 @@ export default function TodoApp() {
         <h2 className="text-2xl font-bold text-blue-500">To-Dos</h2>
         <span className="text-sm text-gray-500">2 tasks</span>
         <div className="flex gap-2">
-          <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition">
-            Add ToDo
+          <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 flex gap-2 transition">
+            <span>
+              <FontAwesomeIcon icon={faTableList} />
+            </span>
+            <span>Add To-Do</span>
           </button>
-          <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition">
-            Add Checklist
+          <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition flex gap-2">
+            <span>
+              <FontAwesomeIcon icon={faList} />
+            </span>
+            <span>Add Checklist</span>
           </button>
         </div>
       </div>

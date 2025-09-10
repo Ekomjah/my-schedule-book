@@ -1,10 +1,16 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
+
 export default function Notes() {
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-blue-500">Notes</h2>
-        <button className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition">
-          Add Note
+        <button className="bg-blue-600 text-white px-4 py-1.5 rounded flex gap-2 hover:bg-blue-700 transition">
+          <span>
+            <FontAwesomeIcon icon={faNoteSticky} />
+          </span>
+          <span>Add Notes</span>
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
