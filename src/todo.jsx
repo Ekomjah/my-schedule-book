@@ -1,11 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faTableList } from "@fortawesome/free-solid-svg-icons";
+import {
+  format,
+  addDays,
+  subDays,
+  differenceInDays,
+  compareAsc,
+} from "date-fns";
 export default function TodoApp() {
-  const myDate = new Date();
-  let date = `${new Date().getDate()}-${
-    myDate.getMonth() + 1
-  }-${myDate.getFullYear()}`;
+  const date = new Date();
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
@@ -39,7 +43,9 @@ export default function TodoApp() {
               </span>
             </div>
 
-            <div className="text-black">Due Date: {date}</div>
+            <div className="text-black">
+              Due Date: {format(date, "dd MMMM yyyy")}
+            </div>
           </div>
         </li>
         <li className="flex justify-center items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition">
@@ -52,7 +58,24 @@ export default function TodoApp() {
               </span>
             </div>
 
-            <div className="text-black">Due Date: {date}</div>
+            <div className="text-black">
+              Due Date: {format(date, "dd MMMM yyyy")}
+            </div>
+          </div>
+        </li>
+        <li className="flex justify-center items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition">
+          <input type="checkbox" className="accent-blue-600 w-5 h-5" />
+          <div className="flex flex-col justify-center items-center">
+            <div className="flex gap-4 p-2">
+              <h2 className="text-gray-800 font-bold">Sample To-Do Item</h2>
+              <span className="ml-auto text-xs bg-red-100 text-red-700 rounded">
+                High
+              </span>
+            </div>
+
+            <div className="text-black">
+              Due Date: {format(date, "dd MMMM yyyy")}
+            </div>
           </div>
         </li>
         <li className="flex justify-center items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition">
@@ -65,21 +88,38 @@ export default function TodoApp() {
               </span>
             </div>
 
-            <div className="text-black">Due Date: {date}</div>
+            <div className="text-black">
+              Due Date: {format(date, "dd MMMM yyyy")}
+            </div>
           </div>
         </li>
-        <li className="flex justify-center items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition">
+      </ul>
+      <div className="flex">
+        <h2 className="text-2xl font-bold text-blue-500 justify-start">
+          Completed!
+        </h2>
+      </div>
+      <ul className="space-y-4 grid grid-cols-4 gap-4 justify-center items-center">
+        <li className="flex items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition opacity-60">
           <input type="checkbox" className="accent-blue-600 w-5 h-5" />
-          <div className="flex flex-col justify-center items-center">
-            <div className="flex gap-4 p-2">
-              <h2 className="text-gray-800 font-bold">Sample To-Do Item</h2>
-              <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">
-                Low
-              </span>
-            </div>
-
-            <div className="text-black">Due Date: {date}</div>
-          </div>
+          <span className="text-gray-800 line-through">Another Task</span>
+          <span className="ml-auto text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded">
+            Completed
+          </span>
+        </li>
+        <li className="flex items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition opacity-60">
+          <input type="checkbox" className="accent-blue-600 w-5 h-5" />
+          <span className="text-gray-800 line-through">Another Task</span>
+          <span className="ml-auto text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded">
+            Completed
+          </span>
+        </li>
+        <li className="flex items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition opacity-60">
+          <input type="checkbox" className="accent-blue-600 w-5 h-5" />
+          <span className="text-gray-800 line-through">Another Task</span>
+          <span className="ml-auto text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded">
+            Completed
+          </span>
         </li>
         <li className="flex items-center gap-3 p-4 bg-white rounded shadow hover:shadow-md transition opacity-60">
           <input type="checkbox" className="accent-blue-600 w-5 h-5" />
@@ -89,11 +129,6 @@ export default function TodoApp() {
           </span>
         </li>
       </ul>
-      <div className="flex">
-        <h2 className="text-2xl font-bold text-blue-500 justify-start">
-          Completed!
-        </h2>
-      </div>
     </section>
   );
 }
