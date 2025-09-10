@@ -24,7 +24,7 @@ export default function Aside({ tab }) {
           <li className="w-full">
             <button className="text-sm text-gray-150 flex justify-center gap-4 hover:text-blue-600 w-full">
               <span>
-                <FontAwesomeIcon icon={faInbox} style={{ color: "yellow" }} />
+                <FontAwesomeIcon icon={faInbox} style={{ color: "white" }} />
               </span>
               <span>All</span>
             </button>
@@ -64,17 +64,17 @@ export default function Aside({ tab }) {
           <div className="flex justify-between items-center">
             <div className="font-semibold text-gray-700 mb-2">Project</div>
             <div className="flex gap-2 items-start">
-              <div className="text-red-500 text-3xl cursor-pointer">
+              <div className="text-red-500 text-xl cursor-pointer">
                 <FontAwesomeIcon icon={faMinus} />
               </div>
-              <div className="text-green-500 text-3xl cursor-pointer">
+              <div className="text-green-500 text-xl cursor-pointer">
                 <FontAwesomeIcon icon={faPlus} />
               </div>
             </div>
           </div>
           <ul className="space-y-1 flex flex-col items-start w-full">
             <li className="w-full">
-              <button className="text-sm text-gray-600 hover:text-blue-600 w-full">
+              <button className="text-sm text-white-600 hover:text-blue-600 w-full">
                 Main
               </button>
             </li>

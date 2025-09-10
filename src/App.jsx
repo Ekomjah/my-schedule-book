@@ -14,7 +14,7 @@ export default function App() {
         {tab === "todos" && (
           <HamburgerIcon onClick={() => setOpen(!open)} isOpen={open} />
         )}
-        <div className="text-lg font-semibold text-red-500">DoNoTo</div>
+        <div className="text-3xl font-semibold text-blue-800">DoNoTo</div>
         <nav className="space-x-2">
           <button
             className={`px-3 py-1 rounded transition-colors duration-200 ${
