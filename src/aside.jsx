@@ -35,7 +35,7 @@ export default function Aside({ tab, darkTheme, display, displayFn }) {
       </div>
       <div className="flex flex-col gap-10">
         <ul className="space-y-1 flex flex-col items-start w-full">
-          <div className="font-semibold text-gray-700 mb-2">Filters</div>
+          <div className="font-semibold text-[brown] mb-2">Filters</div>
           <li className="w-full">
             <button className="text-sm text-gray-100 flex justify-center gap-4 hover:text-blue-600 !bg-gray-800 w-full">
               <span>
@@ -74,7 +74,7 @@ export default function Aside({ tab, darkTheme, display, displayFn }) {
         </ul>
         <div>
           <div className="flex justify-between items-center mb-4">
-            <div className="font-semibold text-gray-700 mb-2">Project</div>
+            <div className="font-semibold text-[brown] mb-2">Project</div>
             <div className="flex gap-2 items-start">
               <div className="text-red-500 text-xl cursor-pointer">
                 <FontAwesomeIcon icon={faMinus} />
