@@ -15,7 +15,7 @@ export default function Notes({ darkTheme }) {
         <textarea
           className={`${
             darkTheme ? "bg-gray-50 text-gray-700" : "bg-gray-700 text-white"
-          } rounded-[10px]  w-full p-2`}
+          } rounded-[10px]  w-full p-2 max-h-[150px]`}
           type="text"
           placeholder="Jot?"
         />
