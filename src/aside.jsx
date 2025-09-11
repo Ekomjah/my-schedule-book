@@ -26,7 +26,7 @@ export default function Aside({ tab, darkTheme }) {
         <ul className="space-y-1 flex flex-col items-start w-full">
           <div className="font-semibold text-gray-700 mb-2">Filters</div>
           <li className="w-full">
-            <button className="text-sm text-gray-100 flex justify-center gap-4 hover:text-blue-600 w-full">
+            <button className="text-sm text-gray-100 flex justify-center gap-4 hover:text-blue-600 !bg-gray-800 w-full">
               <span>
                 <FontAwesomeIcon icon={faInbox} style={{ color: "white" }} />
               </span>
@@ -34,7 +34,7 @@ export default function Aside({ tab, darkTheme }) {
             </button>
           </li>
           <li className="w-full">
-            <button className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 w-full">
+            <button className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 !bg-gray-800 w-full">
               <span>
                 <FontAwesomeIcon icon={faCheck} style={{ color: "#00f004" }} />
               </span>
@@ -42,7 +42,7 @@ export default function Aside({ tab, darkTheme }) {
             </button>
           </li>
           <li className="w-full">
-            <button className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 w-full">
+            <button className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 !bg-gray-800 w-full">
               <span>
                 <FontAwesomeIcon
                   icon={faAlarmClock}
@@ -53,7 +53,7 @@ export default function Aside({ tab, darkTheme }) {
             </button>
           </li>
           <li className="w-full">
-            <button className="flex justify-center gap-4 text-sm text-red-600 hover:text-red-50 w-full">
+            <button className="flex justify-center gap-4 text-sm text-red-600 hover:text-red-50 !bg-gray-800 w-full">
               <span>
                 <FontAwesomeIcon
                   icon={faCircleExclamation}
@@ -78,7 +78,7 @@ export default function Aside({ tab, darkTheme }) {
           </div>
           <ul className="space-y-1 flex flex-col items-start w-full">
             <li className="w-full">
-              <button className="text-sm text-gray-50 hover:text-blue-600 w-full">
+              <button className="text-sm text-gray-50 hover:text-blue-600 !bg-gray-800 w-full">
                 Main
               </button>
             </li>

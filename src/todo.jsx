@@ -10,14 +10,14 @@ export default function TodoApp({ darkTheme }) {
         {" "}
         <h2 className=" sm:text-2xl text-xl font-bold text-blue-500">To-Dos</h2>
         <span className="text-[0.7rem] sm:text-xl text-gray-500">2 tasks</span>
-        <div className="flex gap-2">
-          <button className="bg-blue-600  text-white px-4 py-1.5 rounded hover:bg-blue-700 flex gap-2 transition">
+        <div className="flex gap-2 items-center">
+          <button className="bg-blue-600  text-white px-4 py-1.5 rounded hover:bg-blue-700 flex  items-center gap-2 transition">
             <span>
               <FontAwesomeIcon icon={faTableList} />
             </span>
             <span className="sm:text-sm text-[0.7rem]">Add To-Do</span>
           </button>
-          <button className="bg-blue-600 sm:text-2xl text-sm text-white px-4 py-1.5 rounded hover:bg-blue-700 transition flex gap-2">
+          <button className="bg-blue-600 sm:text-2xl text-sm text-white px-4 py-1.5 rounded hover:bg-blue-700 transition flex items-center  gap-2">
             <span>
               <FontAwesomeIcon icon={faList} />
             </span>

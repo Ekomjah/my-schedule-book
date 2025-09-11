@@ -24,7 +24,7 @@ export default function App() {
           />
         )}
         <div
-          className={`text-3xl font-semibold ${
+          className={`text-xl sm:text-3xl font-semibold ${
             darkMode ? "text-white" : "text-blue-800"
           }`}
         >
@@ -32,7 +32,7 @@ export default function App() {
         </div>
         <nav className="space-x-2 flex gap-2 items-center">
           <button
-            className={`px-3 py-1 rounded transition-colors duration-200 ${
+            className={`sm:px-3 sm:py-1 rounded transition-colors duration-200 ${
               tab === "todos"
                 ? "bg-blue-600 text-white"
                 : "bg-white text-gray-700 border"
@@ -42,7 +42,7 @@ export default function App() {
             To-Dos
           </button>
           <button
-            className={`px-3 py-1 rounded transition-colors duration-200 ${
+            className={`sm:px-3 sm:py-1 rounded transition-colors duration-200 ${
               tab === "notes"
                 ? "bg-blue-600 text-white"
                 : "bg-white text-gray-700 border"
