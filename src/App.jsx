@@ -78,11 +78,14 @@ export default function App() {
               darkTheme={darkMode}
             />
           ) : (
-            <Notes darkTheme={darkMode} />
+            <Notes
+              darkTheme={darkMode}
+              onClick={() => setIsClicked(!isClicked)}
+            />
           )}
         </main>
       </div>
-      <Modal isClicked={isClicked} setIsClicked={setIsClicked} />
+      <Modal isClicked={isClicked} tab={tab} setIsClicked={setIsClicked} />
     </div>
   );
 }

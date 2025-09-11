@@ -4,7 +4,7 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import NotesEl from "./notesEl";
 import { useState } from "react";
 
-export default function Notes({ darkTheme }) {
+export default function Notes({ darkTheme, onClick }) {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <section>
@@ -33,7 +33,10 @@ export default function Notes({ darkTheme }) {
             </span>
             <span>Quick Jots</span>
           </button>
-          <button className="bg-blue-600 text-white px-4 py-1.5 rounded flex gap-2 hover:bg-blue-700 transition">
+          <button
+            onClick={onClick}
+            className="bg-blue-600 text-white px-4 py-1.5 rounded flex gap-2 hover:bg-blue-700 transition"
+          >
             <span>
               <FontAwesomeIcon icon={faNoteSticky} />
             </span>
