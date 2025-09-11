@@ -30,7 +30,7 @@ export default function App() {
             darkMode ? "text-white" : "text-blue-800"
           }`}
         >
-          DoNoTo
+          ToDoNotes
         </div>
         <nav className="space-x-2 flex gap-2 items-center">
           <button
