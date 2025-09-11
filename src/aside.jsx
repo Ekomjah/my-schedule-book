@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInbox } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -7,9 +6,16 @@ import { faAlarmClock } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
 
-export default function Aside({ tab, darkTheme, display, displayFn }) {
-  const [liVal, setLiVal] = useState(["Main"]);
-  const [inputVal, setInputVal] = useState("");
+export default function Aside({
+  tab,
+  darkTheme,
+  display,
+  displayFn,
+  liVal,
+  setLiVal,
+  inputVal,
+  setInputVal,
+}) {
   function addLi(item) {
     if (item) {
       setLiVal((prev) => [...prev, item]);
@@ -118,7 +124,10 @@ export default function Aside({ tab, darkTheme, display, displayFn }) {
                 <button
                   type="submit"
                   className="p-3 text-green-500 !bg-gray-800"
-                  onClick={() => addLi(inputVal)}
+                  onClick={() => {
+                    addLi(inputVal);
+                    displayFn;
+                  }}
                 >
                   Save
                 </button>

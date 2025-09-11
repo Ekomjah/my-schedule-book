@@ -5,9 +5,17 @@ import Todo from "./todo.jsx";
 import Notes from "./notes.jsx";
 import HamburgerIcon from "./hamburgerIcon.jsx";
 import Modal from "./todoModal.jsx";
-
+class objCreate {
+  constructor(title, description) {
+    this.date = new Date();
+    this.title = title;
+    this.description = description;
+  }
+}
 export default function App() {
   const [largeArr, setLargeArr] = useState([]);
+  const [liVal, setLiVal] = useState(["Main"]);
+  const [inputVal, setInputVal] = useState("");
   const [display, setDisplay] = useState(false);
   const [tab, setTab] = useState("todos");
   const [open, setOpen] = useState(false);
@@ -72,6 +80,10 @@ export default function App() {
             tab={tab}
             display={display}
             displayFn={() => setDisplay(!display)}
+            liVal={liVal}
+            setLiVal={setLiVal}
+            inputVal={inputVal}
+            setInputVal={setInputVal}
           />
         )}
         <main
@@ -95,8 +107,4 @@ export default function App() {
       <Modal isClicked={isClicked} tab={tab} setIsClicked={setIsClicked} />
     </div>
   );
-}
-
-class objCreate {
-  constructor() {}
 }
