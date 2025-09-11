@@ -34,7 +34,7 @@ export default function TodoModal({ isClicked, tab, setIsClicked }) {
             ></textarea>
           </label>
           {tab === "todos" && (
-            <div className="flex flex-col gap-2 rounded-2xl p-3">
+            <div className="flex flex-col gap-2 rounded-2xl p-3 w-full">
               <label
                 htmlFor="dueDate"
                 className="flex flex-col items-start max-w-full "

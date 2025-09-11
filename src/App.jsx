@@ -7,6 +7,8 @@ import HamburgerIcon from "./hamburgerIcon.jsx";
 import Modal from "./todoModal.jsx";
 
 export default function App() {
+  const [largeArr, setLargeArr] = useState([]);
+  const [display, setDisplay] = useState(false);
   const [tab, setTab] = useState("todos");
   const [open, setOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -65,7 +67,12 @@ export default function App() {
       </header>
       <div className="flex">
         {tab === "todos" && open && (
-          <Aside darkTheme={darkMode} tab={tab} open={open} />
+          <Aside
+            darkTheme={darkMode}
+            tab={tab}
+            display={display}
+            displayFn={() => setDisplay(!display)}
+          />
         )}
         <main
           className={`flex-1 p-8 mt-15 ${
@@ -88,4 +95,8 @@ export default function App() {
       <Modal isClicked={isClicked} tab={tab} setIsClicked={setIsClicked} />
     </div>
   );
+}
+
+class objCreate {
+  constructor() {}
 }

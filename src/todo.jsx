@@ -56,16 +56,6 @@ export default function TodoApp({ onClick, darkTheme }) {
         <TodoEl darkTheme={darkTheme} />
         <TodoEl darkTheme={darkTheme} />
         <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
       </ul>
     </section>
   );
