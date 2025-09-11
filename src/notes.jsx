@@ -2,14 +2,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import NotesEl from "./notesEl";
+import { useState } from "react";
 
 export default function Notes({ darkTheme }) {
+  const [isClicked, setIsClicked] = useState(false);
   return (
     <section>
+      <div
+        className="flex justify-end gap-3 items-center mb-4"
+        style={{ display: !isClicked && "none" }}
+      >
+        <textarea
+          className={`${
+            darkTheme ? "bg-gray-50 text-gray-700" : "bg-gray-700 text-white"
+          } rounded-[10px]  w-full p-2`}
+          type="text"
+          placeholder="Jot?"
+        />
+        <button>Add</button>
+      </div>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-blue-500">Notes</h2>
-        <div className="flex gap-3">
-          <button className="bg-blue-600 text-white px-4 py-1.5 rounded flex gap-2 hover:bg-blue-700 transition">
+        <div className="flex gap-[10px] items-center">
+          <button
+            onClick={() => setIsClicked(!isClicked)}
+            className="bg-blue-600 text-white px-4 py-1.5 rounded flex gap-2 hover:bg-blue-700 transition"
+          >
             <span>
               <FontAwesomeIcon icon={faPencil} />
             </span>

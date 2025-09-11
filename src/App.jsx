@@ -4,10 +4,12 @@ import Aside from "./aside.jsx";
 import Todo from "./todo.jsx";
 import Notes from "./notes.jsx";
 import HamburgerIcon from "./hamburgerIcon.jsx";
+import Modal from "./todoModal.jsx";
 
 export default function App() {
   const [tab, setTab] = useState("todos");
   const [open, setOpen] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   return (
     <div className={`min-h-screen w-full`}>
@@ -71,12 +73,16 @@ export default function App() {
           }`}
         >
           {tab === "todos" ? (
-            <Todo darkTheme={darkMode} />
+            <Todo
+              onClick={() => setIsClicked(!isClicked)}
+              darkTheme={darkMode}
+            />
           ) : (
             <Notes darkTheme={darkMode} />
           )}
         </main>
       </div>
+      <Modal isClicked={isClicked} setIsClicked={setIsClicked} />
     </div>
   );
 }

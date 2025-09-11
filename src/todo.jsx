@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faTableList } from "@fortawesome/free-solid-svg-icons";
 
-export default function TodoApp({ darkTheme }) {
+export default function TodoApp({ onClick, darkTheme }) {
   return (
     <section>
       <div className="flex items-center justify-between mb-6 ">
@@ -11,7 +11,10 @@ export default function TodoApp({ darkTheme }) {
         <h2 className=" sm:text-2xl text-xl font-bold text-blue-500">To-Dos</h2>
         <span className="text-[0.7rem] sm:text-xl text-gray-500">2 tasks</span>
         <div className="flex gap-2 items-center">
-          <button className="bg-blue-600  text-white px-4 py-1.5 rounded hover:bg-blue-700 flex  items-center gap-2 transition">
+          <button
+            onClick={onClick}
+            className="bg-blue-600  text-white px-4 py-1.5 rounded hover:bg-blue-700 flex  items-center gap-2 transition"
+          >
             <span>
               <FontAwesomeIcon icon={faTableList} />
             </span>
