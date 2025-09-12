@@ -1,4 +1,4 @@
-export default function TodoModal({ isClicked, tab, setIsClicked }) {
+export default function Checklist(isClicked, setIsClicked) {
   return (
     <div
       className="modal-container"
@@ -14,13 +14,13 @@ export default function TodoModal({ isClicked, tab, setIsClicked }) {
         </h2>
         <form className="flex flex-col gap-2 rounded-2xl p-3">
           <label htmlFor="title" className="flex flex-col items-start">
-            <span>Title:</span>
             <input
               className="px-1 w-full border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
               type="text"
               id="title"
               placeholder="Title"
             />
+            <span>Title:</span>
           </label>
           <label
             htmlFor="description"
@@ -33,32 +33,28 @@ export default function TodoModal({ isClicked, tab, setIsClicked }) {
               className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
             ></textarea>
           </label>
-          {tab === "todos" && (
-            <div className="flex flex-col gap-2 rounded-2xl p-3 w-full">
-              <label
-                htmlFor="dueDate"
-                className="flex flex-col items-start max-w-full "
-              >
-                <span>Due Date:</span>
-                <input
-                  type="date"
-                  id="dueDate"
-                  className="px-1 w-full  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
-                  placeholder="dueDate"
-                />
-              </label>
+          <label
+            htmlFor="dueDate"
+            className="flex flex-col items-start max-w-full "
+          >
+            <span>Due Date:</span>
+            <input
+              type="date"
+              id="dueDate"
+              className="px-1 w-full  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+              placeholder="dueDate"
+            />
+          </label>
 
-              <label className="flex flex-col items-start max-w-full">
-                <span>Select Task Priority:</span>
-                <select className="w-full px-1  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm">
-                  <option>Choose Priority:</option>
-                  <option className="text-green-500">Low</option>
-                  <option className="text-orange-500">Medium</option>
-                  <option className="text-red-700">High</option>
-                </select>
-              </label>
-            </div>
-          )}
+          <label className="flex flex-col items-start max-w-full">
+            <span>Select Task Priority:</span>
+            <select className="w-full px-1  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm">
+              <option>Choose Priority:</option>
+              <option className="text-green-500">Low</option>
+              <option className="text-orange-500">Medium</option>
+              <option className="text-red-700">High</option>
+            </select>
+          </label>
         </form>
         <div className="flex justify-end gap-5 mt-5">
           <button

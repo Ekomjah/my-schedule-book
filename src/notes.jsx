@@ -14,11 +14,14 @@ export default function Notes({ darkTheme, onClick }) {
       >
         <textarea
           className={`${
-            darkTheme ? "bg-gray-50 text-gray-700" : "bg-gray-700 text-white"
+            darkTheme
+              ? "bg-gray-50 text-gray-700"
+              : "bg-gray-300 border-1  border-gray-700 text-white"
           } rounded-[10px]  w-full p-2 max-h-[150px]`}
           type="text"
-          placeholder="Jot?"
+          placeholder="Quick Jot?"
         />
+        <button className="!bg-red-500">Remove</button>
         <button>Add</button>
       </div>
       <div className="flex items-center justify-between mb-6">

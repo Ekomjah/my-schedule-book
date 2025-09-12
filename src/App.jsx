@@ -14,6 +14,7 @@ class objCreate {
 }
 export default function App() {
   const [largeArr, setLargeArr] = useState([]);
+  const [isChecklistClicked, setIsChecklistClicked] = useState(false);
   const [liVal, setLiVal] = useState(["Main"]);
   const [inputVal, setInputVal] = useState("");
   const [display, setDisplay] = useState(false);
