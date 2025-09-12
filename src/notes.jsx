@@ -8,27 +8,6 @@ export default function Notes({ darkTheme, onClick }) {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <section>
-      <div
-        className="flex justify-end gap-3 items-center mb-4"
-        style={{ display: !isClicked && "none" }}
-      >
-        <textarea
-          className={`${
-            darkTheme
-              ? "bg-gray-50 text-gray-700"
-              : "bg-gray-300 border-1  border-gray-700 text-white"
-          } rounded-[10px]  w-full p-2 max-h-[150px]`}
-          type="text"
-          placeholder="Quick Jot?"
-        />
-        <button
-          onClick={() => setIsClicked(!isClicked)}
-          className="!bg-red-500"
-        >
-          Remove
-        </button>
-        <button>Add</button>
-      </div>
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-blue-500">Notes</h2>
         <div className="flex gap-[10px] items-center">
@@ -51,6 +30,28 @@ export default function Notes({ darkTheme, onClick }) {
             <span>Add Notes</span>
           </button>
         </div>
+      </div>
+
+      <div
+        className="flex justify-end gap-3 items-center mb-4"
+        style={{ display: !isClicked && "none" }}
+      >
+        <textarea
+          className={`${
+            darkTheme
+              ? "bg-gray-50 text-gray-700"
+              : "bg-gray-300 border-1  border-gray-700 text-white"
+          } rounded-[10px]  w-full p-2 max-h-[150px]`}
+          type="text"
+          placeholder="Quick Jot?"
+        />
+        <button
+          onClick={() => setIsClicked(!isClicked)}
+          className="!bg-red-500"
+        >
+          Remove
+        </button>
+        <button>Add</button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <NotesEl darkTheme={darkTheme} />
