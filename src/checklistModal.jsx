@@ -35,8 +35,8 @@ export default function ChecklistModal({ isClicked, setIsClicked }) {
       className="modal-container"
       style={{ display: isClicked ? "block" : "none" }}
     >
-      <div className="modalBg z-100 bg-[#525151b7]"></div>
-      <div className="modal rounded-2xl z-200 bg-gray-300">
+      <div className="modalBg z-100 bg-[#000000]"></div>
+      <div className="modal overflow-y-auto rounded-2xl z-200 bg-gray-300 h-[90vh]">
         <h1 className="text-gray-900 !text-2xl sm:!text-4xl font-bold mb-1">
           Add a Checklist Item
         </h1>
@@ -54,17 +54,6 @@ export default function ChecklistModal({ isClicked, setIsClicked }) {
             <div>Add a checkbox</div>
             <button onClick={(e) => addList(e)}>+</button>
           </div>
-          <label
-            htmlFor="description"
-            className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
-          >
-            <input type="checkbox" />
-            <textarea
-              name=""
-              id=""
-              className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
-            ></textarea>
-          </label>
           {checklistArr.map((item, index) => (
             <div key={index}>{item}</div>
           ))}

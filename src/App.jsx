@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Aside from "./aside.jsx";
 import Todo from "./todo.jsx";
@@ -17,13 +17,21 @@ class objCreate {
 export default function App() {
   const [largeArr, setLargeArr] = useState([]);
   const [isChecklistModalClicked, setIsChecklistModalClicked] = useState(false);
-  const [liVal, setLiVal] = useState(["Main"]);
+  const [liVal, setLiVal] = useState(() => {
+    return JSON.parse(localStorage.getItem("A-project"))
+      ? JSON.parse(localStorage.getItem("A-project"))
+      : ["Main"];
+  });
   const [inputVal, setInputVal] = useState("");
   const [display, setDisplay] = useState(false);
   const [tab, setTab] = useState("todos");
   const [open, setOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    localStorage.setItem("A-project", JSON.stringify(liVal));
+  }, [liVal]);
   return (
     <div className={`min-h-screen w-full`}>
       <header

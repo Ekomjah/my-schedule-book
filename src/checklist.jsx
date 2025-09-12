@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 
 export default function Checklist({ darkTheme, onChecklistClick }) {
-  function me() {
-    console.log("this");
-  }
+  
   return (
     <section>
       <div className="flex items-center justify-between mb-6 ">
