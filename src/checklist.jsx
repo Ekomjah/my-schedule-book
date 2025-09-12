@@ -30,24 +30,6 @@ export default function Checklist(darkTheme) {
         <TodoEl darkTheme={darkTheme} />
         <TodoEl darkTheme={darkTheme} />
         <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
       </ul>
     </section>
   );

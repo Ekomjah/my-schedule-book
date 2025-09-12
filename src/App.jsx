@@ -4,7 +4,7 @@ import Aside from "./aside.jsx";
 import Todo from "./todo.jsx";
 import Notes from "./notes.jsx";
 import HamburgerIcon from "./hamburgerIcon.jsx";
-import Modal from "./todoModal.jsx";
+import TextModal from "./todoModal.jsx";
 import Checklist from "./checklist.jsx";
 class objCreate {
   constructor(title, description) {
@@ -115,7 +115,7 @@ export default function App() {
           )}
         </main>
       </div>
-      <Modal isClicked={isClicked} tab={tab} setIsClicked={setIsClicked} />
+      <TextModal isClicked={isClicked} tab={tab} setIsClicked={setIsClicked} />
     </div>
   );
 }

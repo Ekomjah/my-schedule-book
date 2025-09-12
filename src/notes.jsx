@@ -21,7 +21,12 @@ export default function Notes({ darkTheme, onClick }) {
           type="text"
           placeholder="Quick Jot?"
         />
-        <button className="!bg-red-500">Remove</button>
+        <button
+          onClick={() => setIsClicked(!isClicked)}
+          className="!bg-red-500"
+        >
+          Remove
+        </button>
         <button>Add</button>
       </div>
       <div className="flex items-center justify-between mb-6">
