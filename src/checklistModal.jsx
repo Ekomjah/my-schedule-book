@@ -1,4 +1,35 @@
+import { useState } from "react";
 export default function ChecklistModal({ isClicked, setIsClicked }) {
+  const [checklistArr, setChecklistArr] = useState([
+    <label
+      htmlFor="description"
+      className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
+    >
+      <input type="checkbox" />
+      <textarea
+        name=""
+        id=""
+        className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+      ></textarea>
+    </label>,
+  ]);
+  function addList(e) {
+    e.preventDefault();
+    setChecklistArr((prev) => [
+      ...prev,
+      <label
+        htmlFor="description"
+        className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
+      >
+        <input type="checkbox" />
+        <textarea
+          name=""
+          id=""
+          className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+        ></textarea>
+      </label>,
+    ]);
+  }
   return (
     <div
       className="modal-container"
@@ -19,13 +50,13 @@ export default function ChecklistModal({ isClicked, setIsClicked }) {
               placeholder="Title"
             />
           </label>
-          <div className="flex justify-around">
+          <div className="flex justify-between items-center">
             <div>Add a checkbox</div>
-            <button>+</button>
+            <button onClick={(e) => addList(e)}>+</button>
           </div>
           <label
             htmlFor="description"
-            className="flex flex-col items-start max-w-full"
+            className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
           >
             <input type="checkbox" />
             <textarea
@@ -34,6 +65,9 @@ export default function ChecklistModal({ isClicked, setIsClicked }) {
               className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
             ></textarea>
           </label>
+          {checklistArr.map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
         </form>
         <div className="flex justify-end gap-5 mt-5">
           <button
