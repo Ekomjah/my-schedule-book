@@ -15,7 +15,6 @@ export default function Aside({
   setLiVal,
   inputVal,
   setInputVal,
-  onChecklistClick,
   removeItemFromProjects,
 }) {
   function addLi(item) {
@@ -80,19 +79,6 @@ export default function Aside({
             </button>
           </li>
         </ul>
-        <div className="flex items-start justify-start flex-col">
-          <div className="font-semibold text-red-500 mb-2">Tasks</div>
-          <ul className="space-y-1 flex flex-col items-start w-full">
-            <li className="w-full">
-              <button
-                onClick={onChecklistClick}
-                className="text-sm text-gray-50 hover:text-blue-600 !bg-gray-800 w-full"
-              >
-                Checklist
-              </button>
-            </li>
-          </ul>
-        </div>
         <div>
           <div className="flex justify-between items-center mb-2">
             <div className="font-semibold text-red-500 mb-2">Project</div>

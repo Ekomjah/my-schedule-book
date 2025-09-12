@@ -7,6 +7,10 @@ import HamburgerIcon from "./hamburgerIcon.jsx";
 import TextModal from "./todoModal.jsx";
 import ChecklistModal from "./checklistModal.jsx";
 import Checklist from "./checklist.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
+import { faTableList } from "@fortawesome/free-solid-svg-icons";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 class objCreate {
   constructor(title, description) {
     this.date = new Date();
@@ -39,7 +43,7 @@ export default function App() {
         liVal.filter((item, spillOverIndex) => spillOverIndex !== index)
       );
     } else {
-      alert(`The Main is A Must!`);
+      alert(`The Main Is A Must-Have!`);
     }
   }
   return (
@@ -72,17 +76,27 @@ export default function App() {
             }`}
             onClick={() => setTab("todos")}
           >
-            To-Dos
+            <FontAwesomeIcon icon={faTableList} />
           </button>
           <button
-            className={`sm:px-3 sm:py-1 rounded transition-colors duration-200 ${
+            className={`sm:px-3 sm:py-1 rounded text-white transition-colors duration-200 border-1 border-white ${
+              tab === "notes"
+                ? "bg-blue-600 text-white"
+                : "bg-white text-gray-700 border"
+            }`}
+            onClick={() => setTab("checklist")}
+          >
+            <FontAwesomeIcon icon={faList} />
+          </button>
+          <button
+            className={`sm:px-3 sm:py-1 rounded  transition-colors duration-200 border-1 border-white ${
               tab === "notes"
                 ? "bg-blue-600 text-white"
                 : "bg-white text-gray-700 border"
             }`}
             onClick={() => setTab("notes")}
           >
-            Notes
+            <FontAwesomeIcon icon={faPencil} />
           </button>
           <label className="switch">
             <input
@@ -105,7 +119,6 @@ export default function App() {
             setLiVal={setLiVal}
             inputVal={inputVal}
             setInputVal={setInputVal}
-            onChecklistClick={() => setTab("checklist")}
             removeItemFromProjects={removeItem}
           />
         )}

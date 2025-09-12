@@ -13,6 +13,13 @@
   --secondary-color: #ea2027;
   --line-height: 1.7rem;
   --transition: 0.4s ease-in;
+
+  --width-of-switch: 3.5em;
+  --height-of-switch: 2em;
+  /* size of sliding icon -- sun and moon */
+  --size-of-icon: 1.4em;
+  /* it is like a inline-padding of switch */
+  --slider-offset: 0.3em;
 }
 
 html {
@@ -46,12 +53,6 @@ textarea {
 /* The switch - the box around the slider */
 .switch {
   display: block;
-  --width-of-switch: 3.5em;
-  --height-of-switch: 2em;
-  /* size of sliding icon -- sun and moon */
-  --size-of-icon: 1.4em;
-  /* it is like a inline-padding of switch */
-  --slider-offset: 0.3em;
   position: relative;
   width: var(--width-of-switch);
   height: var(--height-of-switch);
@@ -123,4 +124,15 @@ form {
 
 [placeholder] {
   color: black;
+}
+
+@media screen and (max-width: 672px) {
+  :root {
+    --width-of-switch: 2.5em;
+    --height-of-switch: 1.3em;
+    /* size of sliding icon -- sun and moon */
+    --size-of-icon: 1em;
+    /* it is like a inline-padding of switch */
+    --slider-offset: 0.3em;
+  }
 }
