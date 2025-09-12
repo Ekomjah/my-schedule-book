@@ -32,6 +32,16 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("A-project", JSON.stringify(liVal));
   }, [liVal]);
+
+  function removeItem(arr, item, index) {
+    if (item !== "Main" && arr.length > 1) {
+      setLiVal(() =>
+        liVal.filter((item, spillOverIndex) => spillOverIndex !== index)
+      );
+    } else {
+      alert(`The Main is A Must!`);
+    }
+  }
   return (
     <div className={`min-h-screen w-full`}>
       <header
@@ -96,6 +106,7 @@ export default function App() {
             inputVal={inputVal}
             setInputVal={setInputVal}
             onChecklistClick={() => setTab("checklist")}
+            removeItemFromProjects={removeItem}
           />
         )}
         <main

@@ -16,6 +16,7 @@ export default function Aside({
   inputVal,
   setInputVal,
   onChecklistClick,
+  removeItemFromProjects,
 }) {
   function addLi(item) {
     if (item) {
@@ -95,23 +96,24 @@ export default function Aside({
         <div>
           <div className="flex justify-between items-center mb-2">
             <div className="font-semibold text-red-500 mb-2">Project</div>
-            <div className="flex gap-2 items-start">
-              <div className="text-red-500 text-xl cursor-pointer">
-                <FontAwesomeIcon icon={faMinus} />
-              </div>
-              <button
-                onClick={displayFn}
-                className="text-green-500 text-xl cursor-pointer"
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
-            </div>
+            <button
+              onClick={displayFn}
+              className="text-green-500 text-xl cursor-pointer"
+            >
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
           </div>
           <ul className="space-y-1 flex flex-col items-start w-full">
-            {liVal.map((item) => (
-              <li className="w-full">
+            {liVal.map((item, index) => (
+              <li className="w-full flex flex-row gap-1">
                 <button className="text-sm text-gray-50 hover:text-blue-600 !bg-gray-800 w-full">
                   {item}
+                </button>
+                <button
+                  className="text-red-500 text-xl cursor-pointer"
+                  onClick={() => removeItemFromProjects(liVal, item, index)}
+                >
+                  <FontAwesomeIcon icon={faMinus} />
                 </button>
               </li>
             ))}
@@ -140,7 +142,7 @@ export default function Aside({
                   className="p-3 text-green-500 !bg-gray-800"
                   onClick={() => {
                     addLi(inputVal);
-                    displayFn;
+                    displayFn();
                   }}
                 >
                   Save
