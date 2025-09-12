@@ -20,15 +20,6 @@ export default function TodoApp({ onClick, darkTheme }) {
             </span>
             <span className="sm:text-sm text-[0.7rem]">Add To-Do</span>
           </button>
-          <button
-            onClick={onClick}
-            className="bg-blue-600 sm:text-2xl text-sm text-white px-4 py-1.5 rounded hover:bg-blue-700 transition flex items-center  gap-2"
-          >
-            <span>
-              <FontAwesomeIcon icon={faList} />
-            </span>
-            <span className="sm:text-sm text-[0.7rem]">Add Checklist</span>
-          </button>
         </div>
       </div>
 

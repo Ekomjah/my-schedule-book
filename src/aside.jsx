@@ -15,6 +15,7 @@ export default function Aside({
   setLiVal,
   inputVal,
   setInputVal,
+  onChecklistClick,
 }) {
   function addLi(item) {
     if (item) {
@@ -30,7 +31,7 @@ export default function Aside({
         darkTheme ? "!bg-gray-900" : "bg-gray-200"
       } overflow-y-auto md:overflow-y-hidden flex flex-col md:relative md:min-h-[calc(100vh-70px)] md:h-auto max-w-xs p-6 z-0 fixed left-0 top-19 h-[calc(100vh-70px)]`}
     >
-      <div className="mb-6 flex gap-3 justify-center items-center">
+      <div className="mb-3 flex gap-3 justify-center items-center">
         <input
           className="flex-2 p-2 rounded border bg-gray-100 text-red-950"
           placeholder={tab === "todos" ? "Quick add to-do" : "Quick add note"}
@@ -39,9 +40,9 @@ export default function Aside({
           Add
         </button>
       </div>
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-2">
         <ul className="space-y-1 flex flex-col items-start w-full">
-          <div className="font-semibold text-[brown] mb-2">Filters</div>
+          <div className="font-semibold text-red-500 mb-2">Filters</div>
           <li className="w-full">
             <button className="text-sm text-gray-100 flex justify-center gap-4 hover:text-blue-600 !bg-gray-800 w-full">
               <span>
@@ -78,9 +79,22 @@ export default function Aside({
             </button>
           </li>
         </ul>
+        <div className="flex items-start justify-start flex-col">
+          <div className="font-semibold text-red-500 mb-2">Tasks</div>
+          <ul className="space-y-1 flex flex-col items-start w-full">
+            <li className="w-full">
+              <button
+                onClick={onChecklistClick}
+                className="text-sm text-gray-50 hover:text-blue-600 !bg-gray-800 w-full"
+              >
+                Checklist
+              </button>
+            </li>
+          </ul>
+        </div>
         <div>
-          <div className="flex justify-between items-center mb-4">
-            <div className="font-semibold text-[brown] mb-2">Project</div>
+          <div className="flex justify-between items-center mb-2">
+            <div className="font-semibold text-red-500 mb-2">Project</div>
             <div className="flex gap-2 items-start">
               <div className="text-red-500 text-xl cursor-pointer">
                 <FontAwesomeIcon icon={faMinus} />

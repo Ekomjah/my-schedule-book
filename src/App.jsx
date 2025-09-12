@@ -5,6 +5,7 @@ import Todo from "./todo.jsx";
 import Notes from "./notes.jsx";
 import HamburgerIcon from "./hamburgerIcon.jsx";
 import Modal from "./todoModal.jsx";
+import Checklist from "./checklist.jsx";
 class objCreate {
   constructor(title, description) {
     this.date = new Date();
@@ -29,7 +30,7 @@ export default function App() {
           darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
         }`}
       >
-        {tab === "todos" && (
+        {(tab === "todos" || tab === "checklist") && (
           <HamburgerIcon
             onClick={() => setOpen(!open)}
             isOpen={open}
@@ -75,7 +76,7 @@ export default function App() {
         </nav>
       </header>
       <div className="flex">
-        {tab === "todos" && open && (
+        {(tab === "todos" || tab === "checklist") && open && (
           <Aside
             darkTheme={darkMode}
             tab={tab}
@@ -85,6 +86,7 @@ export default function App() {
             setLiVal={setLiVal}
             inputVal={inputVal}
             setInputVal={setInputVal}
+            onChecklistClick={() => setTab("checklist")}
           />
         )}
         <main
@@ -97,10 +99,18 @@ export default function App() {
               onClick={() => setIsClicked(!isClicked)}
               darkTheme={darkMode}
             />
-          ) : (
+          ) : tab === "notes" ? (
             <Notes
               darkTheme={darkMode}
               onClick={() => setIsClicked(!isClicked)}
+            />
+          ) : (
+            <Checklist
+              darkTheme={darkMode}
+              onClick={() => setIsClicked(true)}
+              onChecklistClick={() =>
+                setIsChecklistClicked(!isChecklistClicked)
+              }
             />
           )}
         </main>
