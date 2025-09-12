@@ -5,6 +5,7 @@ import Todo from "./todo.jsx";
 import Notes from "./notes.jsx";
 import HamburgerIcon from "./hamburgerIcon.jsx";
 import TextModal from "./todoModal.jsx";
+import ChecklistModal from "./checklistModal.jsx";
 import Checklist from "./checklist.jsx";
 class objCreate {
   constructor(title, description) {
@@ -15,7 +16,7 @@ class objCreate {
 }
 export default function App() {
   const [largeArr, setLargeArr] = useState([]);
-  const [isChecklistClicked, setIsChecklistClicked] = useState(false);
+  const [isChecklistModalClicked, setIsChecklistModalClicked] = useState(false);
   const [liVal, setLiVal] = useState(["Main"]);
   const [inputVal, setInputVal] = useState("");
   const [display, setDisplay] = useState(false);
@@ -107,15 +108,18 @@ export default function App() {
           ) : (
             <Checklist
               darkTheme={darkMode}
-              onClick={() => setIsClicked(true)}
               onChecklistClick={() =>
-                setIsChecklistClicked(!isChecklistClicked)
+                setIsChecklistModalClicked(!isChecklistModalClicked)
               }
             />
           )}
         </main>
       </div>
       <TextModal isClicked={isClicked} tab={tab} setIsClicked={setIsClicked} />
+      <ChecklistModal
+        isClicked={isChecklistModalClicked}
+        setIsClicked={setIsChecklistModalClicked}
+      />
     </div>
   );
 }

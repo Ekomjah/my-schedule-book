@@ -1,4 +1,4 @@
-export default function ChecklistModal({ isClicked, tab, setIsClicked }) {
+export default function ChecklistModal({ isClicked, setIsClicked }) {
   return (
     <div
       className="modal-container"
