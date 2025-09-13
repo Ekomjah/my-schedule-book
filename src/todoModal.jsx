@@ -26,6 +26,13 @@ export default function TodoModal({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
+  function clearAllInputs() {}
+  {
+    setTitle("");
+    setDescription("");
+    setPriority("low");
+    setDueDate("");
+  }
   return (
     <div
       className="modal-container"
@@ -116,6 +123,7 @@ export default function TodoModal({
             onClick={() => {
               objectSaver(title, description, dueDate, priority);
               setIsClicked(!isClicked);
+              clearAllInputs();
             }}
           >
             Save

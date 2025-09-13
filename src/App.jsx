@@ -128,6 +128,7 @@ export default function App() {
               largeArr={largeArr}
               asideTab={asideTab}
               setTasksLength={setTasksLength}
+              tasksLength={tasksLength}
             />
           ) : tab === "notes" ? (
             <Notes
