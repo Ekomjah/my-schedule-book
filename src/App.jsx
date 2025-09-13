@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faTableList } from "@fortawesome/free-solid-svg-icons";
 import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
-// As you wake up tommorow work on the main tab useState that i am casually typing in TODAY and fix the priority tab bug in the form!
+
 export default function App() {
   const [asideTab, setAsideTab] = useState("main");
   const [largeArr, setLargeArr] = useState(() => {
