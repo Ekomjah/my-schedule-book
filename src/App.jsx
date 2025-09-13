@@ -14,6 +14,7 @@ import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 
 export default function App() {
   const [asideTab, setAsideTab] = useState("main");
+  const [tasksLength, setTasksLength] = useState(200);
   const [largeArr, setLargeArr] = useState(() => {
     return JSON.parse(localStorage.getItem("todoAiir"))
       ? JSON.parse(localStorage.getItem("todoAiir"))
@@ -55,7 +56,7 @@ export default function App() {
           darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
         }`}
       >
-        {(tab === "todos" || tab === "checklist") && (
+        {tab === "todos" && (
           <HamburgerIcon
             onClick={() => setOpen(!open)}
             isOpen={open}
@@ -99,7 +100,7 @@ export default function App() {
         </nav>
       </header>
       <div className="flex">
-        {(tab === "todos" || tab === "checklist") && open && (
+        {tab === "todos" && open && (
           <Aside
             darkTheme={darkMode}
             tab={tab}
@@ -126,6 +127,7 @@ export default function App() {
               darkTheme={darkMode}
               largeArr={largeArr}
               asideTab={asideTab}
+              setTasksLength={setTasksLength}
             />
           ) : tab === "notes" ? (
             <Notes
