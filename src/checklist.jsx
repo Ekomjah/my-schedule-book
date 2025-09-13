@@ -1,9 +1,8 @@
-import TodoEl from "./todoEl.jsx";
+import TodoEl from "./checklistEl.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Checklist({ darkTheme, onChecklistClick }) {
-  
   return (
     <section>
       <div className="flex items-center justify-between mb-6 ">
@@ -14,12 +13,11 @@ export default function Checklist({ darkTheme, onChecklistClick }) {
         <span className="text-[0.7rem] sm:text-xl text-gray-500">2 tasks</span>
         <button
           onClick={onChecklistClick}
-          className="bg-blue-600 sm:text-2xl text-sm text-white px-4 py-1.5 rounded hover:bg-blue-700 transition flex items-center  gap-2"
+          className="!bg-blue-400 !rounded-3xl !text-black !px-3 !py-4 !fixed !bottom-10 !right-8 hover:bg-blue-700 flex  items-center gap-2 transition"
         >
           <span>
-            <FontAwesomeIcon icon={faList} />
+            <FontAwesomeIcon icon={faPlus} size="2x" />
           </span>
-          <span className="sm:text-sm text-[0.7rem]">Add Checklist</span>
         </button>
       </div>
 

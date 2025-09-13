@@ -16,20 +16,23 @@ export default function Aside({
   inputVal,
   setInputVal,
   removeItemFromProjects,
+  setAsideTab,
+  asideTab,
+  largeArr,
 }) {
   function addLi(item) {
-    if (item) {
+    if (item && item !== "Main" && !liVal.includes(item)) {
       setLiVal((prev) => [...prev, item]);
       setInputVal("");
     } else {
-      alert("Input a project name!");
+      alert("Enter a unique project name!");
     }
   }
   return (
     <aside
       className={`${
         darkTheme ? "!bg-gray-900" : "bg-gray-200"
-      } overflow-y-auto md:overflow-y-hidden flex flex-col md:relative md:min-h-[calc(100vh-70px)] md:h-auto max-w-xs p-6 z-0 fixed left-0 top-19 h-[calc(100vh-70px)]`}
+      } overflow-y-auto md:overflow-y-hidden flex z-1 flex-col md:relative md:min-h-[calc(100vh-70px)] md:h-auto max-w-xs p-6 fixed left-0 top-19 h-[calc(100vh-70px)]`}
     >
       <div className="mb-3 flex gap-3 justify-center items-center">
         <input
@@ -44,7 +47,10 @@ export default function Aside({
         <ul className="space-y-1 flex flex-col items-start w-full">
           <div className="font-semibold text-red-500 mb-2">Filters</div>
           <li className="w-full">
-            <button className="text-sm text-gray-100 flex justify-center gap-4 hover:text-blue-600 !bg-gray-800 w-full">
+            <button
+              onClick={() => setAsideTab("all")}
+              className="text-sm text-gray-100 flex justify-center gap-4 hover:text-blue-600 !bg-gray-800 w-full"
+            >
               <span>
                 <FontAwesomeIcon icon={faInbox} style={{ color: "white" }} />
               </span>
@@ -52,7 +58,10 @@ export default function Aside({
             </button>
           </li>
           <li className="w-full">
-            <button className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 !bg-gray-800 w-full">
+            <button
+              onClick={() => setAsideTab("completed")}
+              className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 !bg-gray-800 w-full"
+            >
               <span>
                 <FontAwesomeIcon icon={faCheck} style={{ color: "#00f004" }} />
               </span>
@@ -60,7 +69,10 @@ export default function Aside({
             </button>
           </li>
           <li className="w-full">
-            <button className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 !bg-gray-800 w-full">
+            <button
+              onClick={() => setAsideTab("pending")}
+              className="flex justify-center gap-4 text-sm text-gray-100 hover:text-blue-600 !bg-gray-800 w-full"
+            >
               <span>
                 <FontAwesomeIcon icon={faAlarmClock} />
               </span>
@@ -68,7 +80,10 @@ export default function Aside({
             </button>
           </li>
           <li className="w-full">
-            <button className="flex justify-center gap-4 text-sm text-red-600 hover:text-red-50 !bg-gray-800 w-full">
+            <button
+              onClick={() => setAsideTab("overdue")}
+              className="flex justify-center gap-4 text-sm text-red-600 hover:text-red-50 !bg-gray-800 w-full"
+            >
               <span>
                 <FontAwesomeIcon
                   icon={faCircleExclamation}
@@ -92,7 +107,10 @@ export default function Aside({
           <ul className="space-y-1 flex flex-col items-start w-full">
             {liVal.map((item, index) => (
               <li className="w-full flex flex-row gap-1">
-                <button className="text-sm text-gray-50 hover:text-blue-600 !bg-gray-800 w-full">
+                <button
+                  onClick={() => setAsideTab(item.toLowerCase())}
+                  className="text-sm text-gray-50 hover:text-blue-600 !bg-gray-800 w-full"
+                >
                   {item}
                 </button>
                 <button

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import NotesEl from "./notesEl";
 import { useState } from "react";
@@ -22,12 +22,11 @@ export default function Notes({ darkTheme, onClick }) {
           </button>
           <button
             onClick={onClick}
-            className="bg-blue-600 text-white px-4 py-1.5 rounded flex gap-2 hover:bg-blue-700 transition"
+            className="!bg-blue-400 !rounded-3xl !text-black !px-3 !py-4 !fixed !bottom-10 !right-8 hover:bg-blue-700 flex  items-center gap-2 transition"
           >
             <span>
-              <FontAwesomeIcon icon={faNoteSticky} />
+              <FontAwesomeIcon icon={faPlus} size="2x" />
             </span>
-            <span>Add Notes</span>
           </button>
         </div>
       </div>

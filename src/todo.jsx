@@ -1,9 +1,9 @@
 import TodoEl from "./todoEl.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faTableList } from "@fortawesome/free-solid-svg-icons";
 
-export default function TodoApp({ onClick, darkTheme }) {
+export default function TodoApp({ onClick, darkTheme, largeArr, asideTab }) {
   return (
     <section>
       <div className="flex items-center justify-between mb-6 ">
@@ -13,43 +13,17 @@ export default function TodoApp({ onClick, darkTheme }) {
         <div className="flex gap-2 items-center">
           <button
             onClick={onClick}
-            className="bg-blue-600  text-white px-4 py-1.5 rounded hover:bg-blue-700 flex  items-center gap-2 transition"
+            className="!bg-blue-400 !rounded-3xl !text-black !px-3 !py-4 !fixed !bottom-10 !right-8 hover:bg-blue-700 flex  items-center gap-2 transition"
           >
             <span>
-              <FontAwesomeIcon icon={faTableList} />
+              <FontAwesomeIcon icon={faPlus} size="2x" />
             </span>
-            <span className="sm:text-sm text-[0.7rem]">Add To-Do</span>
           </button>
         </div>
       </div>
 
       <ul className="space-y-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center">
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
-        <TodoEl darkTheme={darkTheme} />
+        <TodoEl darkTheme={darkTheme} largeArr={largeArr} asideTab={asideTab} />
       </ul>
     </section>
   );

@@ -10,20 +10,20 @@ import Checklist from "./checklist.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faTableList } from "@fortawesome/free-solid-svg-icons";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-class objCreate {
-  constructor(title, description) {
-    this.date = new Date();
-    this.title = title;
-    this.description = description;
-  }
-}
+import { faNoteSticky } from "@fortawesome/free-solid-svg-icons";
+// As you wake up tommorow work on the main tab useState that i am casually typing in TODAY and fix the priority tab bug in the form!
 export default function App() {
-  const [largeArr, setLargeArr] = useState([]);
+  const [asideTab, setAsideTab] = useState("main");
+  const [largeArr, setLargeArr] = useState(() => {
+    return JSON.parse(localStorage.getItem("todoAiir"))
+      ? JSON.parse(localStorage.getItem("todoAiir"))
+      : [];
+  });
+  const [priority, setPriority] = useState("low");
   const [isChecklistModalClicked, setIsChecklistModalClicked] = useState(false);
   const [liVal, setLiVal] = useState(() => {
-    return JSON.parse(localStorage.getItem("A-project"))
-      ? JSON.parse(localStorage.getItem("A-project"))
+    return JSON.parse(localStorage.getItem("As-project"))
+      ? JSON.parse(localStorage.getItem("As-project"))
       : ["Main"];
   });
   const [inputVal, setInputVal] = useState("");
@@ -34,8 +34,10 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem("A-project", JSON.stringify(liVal));
-  }, [liVal]);
+    localStorage.setItem("As-project", JSON.stringify(liVal));
+    localStorage.setItem("todoAiir", JSON.stringify(largeArr));
+    console.log("Warning: I am changing yet again to: ", largeArr);
+  }, [liVal, largeArr]);
 
   function removeItem(arr, item, index) {
     if (item !== "Main" && arr.length > 1) {
@@ -67,36 +69,24 @@ export default function App() {
         >
           ToDoNotes
         </div>
-        <nav className="space-x-2 flex gap-2 items-center">
+        <nav className="gap-2 space-x-2 flex sm:gap-6 items-center">
           <button
-            className={`sm:px-3 sm:py-1 rounded transition-colors duration-200 ${
-              tab === "todos"
-                ? "bg-blue-600 text-white"
-                : "bg-white text-gray-700 border"
-            }`}
+            className={`!text-xl md:!text-3xl !p-0 !bg-transparent rounded transition-colors duration-200 `}
             onClick={() => setTab("todos")}
           >
             <FontAwesomeIcon icon={faTableList} />
           </button>
           <button
-            className={`sm:px-3 sm:py-1 rounded text-white transition-colors duration-200 border-1 border-white ${
-              tab === "notes"
-                ? "bg-blue-600 text-white"
-                : "bg-white text-gray-700 border"
-            }`}
+            className={`!text-xl md:!text-3xl !p-0 !bg-transparent rounded transition-colors duration-200`}
             onClick={() => setTab("checklist")}
           >
             <FontAwesomeIcon icon={faList} />
           </button>
           <button
-            className={`sm:px-3 sm:py-1 rounded  transition-colors duration-200 border-1 border-white ${
-              tab === "notes"
-                ? "bg-blue-600 text-white"
-                : "bg-white text-gray-700 border"
-            }`}
+            className={`!text-xl md:!text-3xl !p-0 !bg-transparent rounded  transition-colors duration-200`}
             onClick={() => setTab("notes")}
           >
-            <FontAwesomeIcon icon={faPencil} />
+            <FontAwesomeIcon icon={faNoteSticky} />
           </button>
           <label className="switch">
             <input
@@ -120,6 +110,9 @@ export default function App() {
             inputVal={inputVal}
             setInputVal={setInputVal}
             removeItemFromProjects={removeItem}
+            setAsideTab={setAsideTab}
+            asideTab={asideTab}
+            largeArr={largeArr}
           />
         )}
         <main
@@ -131,6 +124,8 @@ export default function App() {
             <Todo
               onClick={() => setIsClicked(!isClicked)}
               darkTheme={darkMode}
+              largeArr={largeArr}
+              asideTab={asideTab}
             />
           ) : tab === "notes" ? (
             <Notes
@@ -147,7 +142,15 @@ export default function App() {
           )}
         </main>
       </div>
-      <TextModal isClicked={isClicked} tab={tab} setIsClicked={setIsClicked} />
+      <TextModal
+        isClicked={isClicked}
+        tab={tab}
+        setIsClicked={setIsClicked}
+        setPriority={setPriority}
+        priority={priority}
+        setLargeArr={setLargeArr}
+        asideTab={asideTab}
+      />
       <ChecklistModal
         isClicked={isChecklistModalClicked}
         setIsClicked={setIsChecklistModalClicked}

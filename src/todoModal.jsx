@@ -1,4 +1,31 @@
-export default function TodoModal({ isClicked, tab, setIsClicked }) {
+import { useState } from "react";
+export default function TodoModal({
+  isClicked,
+  tab,
+  setIsClicked,
+  setPriority,
+  priority,
+  setLargeArr,
+  asideTab,
+}) {
+  class ObjCreate {
+    constructor(title, description, dueDate = "", priority = "") {
+      this.currDate = new Date();
+      this.title = title;
+      this.description = description;
+      this.dueDate = dueDate;
+      this.priority = priority;
+      this.savedTab = asideTab;
+    }
+  }
+  function objectSaver(title, description, dueDate, priority) {
+    let myObject = new ObjCreate(title, description, dueDate, priority);
+    console.log(myObject);
+    setLargeArr((prev) => [...prev, myObject]);
+  }
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState("");
   return (
     <div
       className="modal-container"
@@ -20,6 +47,8 @@ export default function TodoModal({ isClicked, tab, setIsClicked }) {
               type="text"
               id="title"
               placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </label>
           <label
@@ -31,6 +60,9 @@ export default function TodoModal({ isClicked, tab, setIsClicked }) {
               name=""
               id=""
               className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+              placeholder="This is all about me..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </label>
           {tab === "todos" && (
@@ -45,16 +77,27 @@ export default function TodoModal({ isClicked, tab, setIsClicked }) {
                   id="dueDate"
                   className="px-1 w-full  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
                   placeholder="dueDate"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
                 />
               </label>
 
               <label className="flex flex-col items-start max-w-full">
                 <span>Select Task Priority:</span>
-                <select className="w-full px-1  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm">
-                  <option>Choose Priority:</option>
-                  <option className="text-green-500">Low</option>
-                  <option className="text-orange-500">Medium</option>
-                  <option className="text-red-700">High</option>
+                <select
+                  onChange={(e) => setPriority(e.target.value)}
+                  className="w-full px-1  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+                >
+                  <option value="">Choose Priority:</option>
+                  <option value="low" className="text-green-500">
+                    Low
+                  </option>
+                  <option value="medium" className="text-orange-500">
+                    Medium
+                  </option>
+                  <option value="high" className="text-red-700">
+                    High
+                  </option>
                 </select>
               </label>
             </div>
@@ -67,7 +110,14 @@ export default function TodoModal({ isClicked, tab, setIsClicked }) {
           >
             Cancel
           </button>
-          <button type="submit" className="p-3 text-green-500 bg-gray-700">
+          <button
+            type="submit"
+            className="p-3 text-green-500 bg-gray-700"
+            onClick={() => {
+              objectSaver(title, description, dueDate, priority);
+              setIsClicked(!isClicked);
+            }}
+          >
             Save
           </button>
         </div>
