@@ -16,6 +16,7 @@ export default function TodoModal({
       this.dueDate = dueDate;
       this.priority = priority;
       this.savedTab = asideTab;
+      this.checked = false;
     }
   }
   function objectSaver(title, description, dueDate, priority) {
@@ -26,13 +27,13 @@ export default function TodoModal({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
-  function clearAllInputs() {}
-  {
-    setTitle("");
-    setDescription("");
-    setPriority("low");
-    setDueDate("");
-  }
+  // function clearAllInputs() {}
+  // {
+  //   setTitle("");
+  //   setDescription("");
+  //   setPriority("low");
+  //   setDueDate("");
+  // }
   return (
     <div
       className="modal-container"
@@ -43,14 +44,14 @@ export default function TodoModal({
         <h1 className="text-gray-900 !text-2xl sm:!text-4xl font-bold mb-1">
           {`${tab === "todos" ? "My Next To-do" : "New Note"}`}
         </h1>
-        <h2 className="text-red-500 font-medium">
+        <h2 className="text-red-700 font-medium">
           Kindly fill in the information below:
         </h2>
         <form className="flex flex-col gap-2 rounded-2xl p-3">
           <label htmlFor="title" className="flex flex-col items-start">
             <span>Title:</span>
             <input
-              className="px-1 w-full border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+              className="p-2 w-full border-2 border-blue-400 rounded-xl !text-white  bg-transparent"
               type="text"
               id="title"
               placeholder="Title"
@@ -66,14 +67,14 @@ export default function TodoModal({
             <textarea
               name=""
               id=""
-              className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+              className="p-2 w-full border-2 border-blue-400 rounded-xl !text-white  bg-transparent"
               placeholder="This is all about me..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </label>
           {tab === "todos" && (
-            <div className="flex flex-col gap-2 rounded-2xl p-3 w-full">
+            <div className="flex flex-col gap-2 rounded-2xl p-3 !w-full">
               <label
                 htmlFor="dueDate"
                 className="flex flex-col items-start max-w-full "
@@ -82,7 +83,7 @@ export default function TodoModal({
                 <input
                   type="date"
                   id="dueDate"
-                  className="px-1 w-full  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+                  className="p-2 w-full border-2 border-blue-400 rounded-xl !text-white  bg-transparent"
                   placeholder="dueDate"
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
@@ -93,42 +94,45 @@ export default function TodoModal({
                 <span>Select Task Priority:</span>
                 <select
                   onChange={(e) => setPriority(e.target.value)}
-                  className="w-full px-1  border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
+                  className="p-2 w-full border-2 border-blue-400 rounded-xl !text-white  bg-transparent"
                 >
                   <option value="">Choose Priority:</option>
-                  <option value="low" className="text-green-500">
+                  <option value="low" className="text-green-500 bg-gray-700">
                     Low
                   </option>
-                  <option value="medium" className="text-orange-500">
+                  <option
+                    value="medium"
+                    className="text-orange-500 bg-gray-700"
+                  >
                     Medium
                   </option>
-                  <option value="high" className="text-red-700">
+                  <option value="high" className="text-red-700 bg-gray-700">
                     High
                   </option>
                 </select>
               </label>
             </div>
           )}
+          <div className="flex justify-end gap-5 mt-5">
+            <button
+              className="!text-xl !bg-transparent !p-0 text-red-600"
+              onClick={() => setIsClicked(!isClicked)}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="!text-xl !bg-transparent !p-0 text-blue-400"
+              onClick={() => {
+                objectSaver(title, description, dueDate, priority);
+                setIsClicked(!isClicked);
+                // clearAllInputs();
+              }}
+            >
+              Save
+            </button>
+          </div>
         </form>
-        <div className="flex justify-end gap-5 mt-5">
-          <button
-            className="p-3 bg-gray-700 text-red-600"
-            onClick={() => setIsClicked(!isClicked)}
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="p-3 text-green-500 bg-gray-700"
-            onClick={() => {
-              objectSaver(title, description, dueDate, priority);
-              setIsClicked(!isClicked);
-              clearAllInputs();
-            }}
-          >
-            Save
-          </button>
-        </div>
       </div>
     </div>
   );

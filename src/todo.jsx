@@ -15,9 +15,7 @@ export default function TodoApp({
       <div className="flex items-center justify-between mb-6 ">
         {" "}
         <h2 className=" sm:text-2xl text-xl font-bold text-blue-500">To-Dos</h2>
-        <span className="text-[0.7rem] sm:text-xl text-gray-500">
-          {tasksLength}
-        </span>
+        <span className="text-xl text-gray-500">{tasksLength}</span>
         <div className="flex gap-2 items-center">
           {asideTab !== "all" &&
             asideTab !== "completed" &&

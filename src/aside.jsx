@@ -21,7 +21,15 @@ export default function Aside({
   largeArr,
 }) {
   function addLi(item) {
-    if (item && item !== "Main" && !liVal.includes(item)) {
+    if (
+      item &&
+      item !== "add" &&
+      item !== "overdue" &&
+      item !== "pending" &&
+      item !== "all" &&
+      item !== "Main" &&
+      !liVal.includes(item)
+    ) {
       setLiVal((prev) => [...prev, item]);
       setInputVal("");
     } else {
@@ -132,7 +140,9 @@ export default function Aside({
                 onChange={(e) => setInputVal(e.target.value)}
                 name=""
                 id=""
-                className="w-full bg-gray-300 text-black p-2 rounded border"
+                className={`p-2 w-full border-2 border-blue-400 rounded-xl ${
+                  darkTheme ? "!text-[white]" : "!text-gray-900"
+                } bg-transparent`}
               />
               <div className="flex gap-5 mt-3">
                 <button
