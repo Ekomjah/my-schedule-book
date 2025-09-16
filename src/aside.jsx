@@ -19,6 +19,7 @@ export default function Aside({
   setAsideTab,
   asideTab,
   largeArr,
+  setLargeArr,
 }) {
   function addLi(item) {
     if (
@@ -114,13 +115,19 @@ export default function Aside({
           </div>
           <ul className="space-y-1 flex flex-col items-start w-full">
             {liVal.map((item, index) => (
-              <li className="w-full flex flex-row gap-1">
-                <button
-                  onClick={() => setAsideTab(item.toLowerCase())}
-                  className="text-sm text-gray-50 hover:text-blue-600 !bg-gray-800 w-full"
+              <li className="p-0.5 w-full flex flex-row !items-center !bg-gray-800 !rounded-xl">
+                <a
+                  onClick={(e) => e.preventDefault()}
+                  href=""
+                  className="text-sm text-gray-50 hover:text-blue-600 !bg-transparent  w-full"
                 >
-                  {item}
-                </button>
+                  <button
+                    onClick={() => setAsideTab(item.toLowerCase())}
+                    className="text-sm text-gray-50 hover:text-blue-600 !bg-transparent  w-full"
+                  >
+                    {item}
+                  </button>
+                </a>
                 <button
                   className="text-red-500 text-xl cursor-pointer"
                   onClick={() => removeItemFromProjects(liVal, item, index)}

@@ -42,6 +42,9 @@ export default function App() {
 
   function removeItem(arr, item, index) {
     if (item !== "Main" && arr.length > 1) {
+      setLargeArr(() =>
+        largeArr.filter((arrayItem) => arrayItem.savedTab !== item)
+      );
       setLiVal(() =>
         liVal.filter((item, spillOverIndex) => spillOverIndex !== index)
       );
@@ -114,6 +117,7 @@ export default function App() {
             setAsideTab={setAsideTab}
             asideTab={asideTab}
             largeArr={largeArr}
+            setLargeArr={setLargeArr}
           />
         )}
         <main
