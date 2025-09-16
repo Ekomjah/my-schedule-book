@@ -20,6 +20,11 @@ export default function App() {
       ? JSON.parse(localStorage.getItem("todo"))
       : [];
   });
+  const [notesArr, setNotesArr] = useState(() => {
+    return JSON.parse(localStorage.getItem("noting"))
+      ? JSON.parse(localStorage.getItem("noting"))
+      : [];
+  });
   const [priority, setPriority] = useState("low");
   const [isChecklistModalClicked, setIsChecklistModalClicked] = useState(false);
   const [liVal, setLiVal] = useState(() => {
@@ -37,8 +42,8 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("As-project", JSON.stringify(liVal));
     localStorage.setItem("todo", JSON.stringify(largeArr));
-    console.log("Warning: I am changing yet again to: ", largeArr);
-  }, [liVal, largeArr]);
+    localStorage.setItem("noting", JSON.stringify(notesArr));
+  }, [liVal, largeArr, notesArr]);
 
   function removeItem(arr, item, index) {
     if (item !== "Main" && arr.length > 1) {
@@ -139,6 +144,8 @@ export default function App() {
             <Notes
               darkTheme={darkMode}
               onClick={() => setIsClicked(!isClicked)}
+              notesArr={notesArr}
+              setNotesArr={setNotesArr}
             />
           ) : (
             <Checklist
@@ -159,6 +166,8 @@ export default function App() {
         setLargeArr={setLargeArr}
         asideTab={asideTab}
         largeArr={largeArr}
+        notesArr={notesArr}
+        setNotesArr={setNotesArr}
       />
       <ChecklistModal
         isClicked={isChecklistModalClicked}

@@ -119,7 +119,7 @@ export default function TodoEl({
                 darkTheme
                   ? "!bg-gray-900 !text-gray-200"
                   : "!text-gray-900 !bg-gray-200"
-              }  rounded shadow hover:shadow-md transition w-full`}
+              }  rounded shadow hover:shadow-lg transition cursor-pointer w-full`}
             >
               {asideTab !== "overdue" &&
                 asideTab !== "pending" &&

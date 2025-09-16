@@ -4,7 +4,7 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import NotesEl from "./notesEl";
 import { useState } from "react";
 
-export default function Notes({ darkTheme, onClick }) {
+export default function Notes({ darkTheme, onClick, notesArr, setNotesArr }) {
   const [isClicked, setIsClicked] = useState(false);
   return (
     <section>
@@ -53,10 +53,14 @@ export default function Notes({ darkTheme, onClick }) {
         <button>Add</button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <NotesEl darkTheme={darkTheme} />
-        <NotesEl darkTheme={darkTheme} />
-        <NotesEl darkTheme={darkTheme} />
-        <div className="bg-white p-6 rounded shadow hover:shadow-lg transition cursor-pointer">
+        <NotesEl
+          darkTheme={darkTheme}
+          notesArr={notesArr}
+          setNotesArr={setNotesArr}
+        />
+        
+
+        {/* <div className="bg-white p-6 rounded shadow hover:shadow-lg transition cursor-pointer">
           <div className="font-semibold mb-2 text-lg">Another Note</div>
           <div className="text-gray-600 mb-3">Some more note content here.</div>
           <div className="flex justify-end text-xs text-gray-400">
@@ -71,7 +75,7 @@ export default function Notes({ darkTheme, onClick }) {
           <div className="flex justify-end text-xs text-gray-400">
             Edited just now
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

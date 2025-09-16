@@ -1,13 +1,39 @@
-export default function NotesEl({ darkTheme }) {
+import {
+  format,
+  differenceInDays,
+  compareAsc,
+  differenceInMinutes,
+} from "date-fns";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+export default function NotesEl({ darkTheme, notesArr, setNotesArr }) {
   return (
-    <div
-      className={`bg-white p-6 rounded shadow hover:shadow-lg transition cursor-pointer ${
-        darkTheme ? "!bg-gray-900 text-gray-200" : "!bg-gray-200 !text-gray-900"
-      }`}
-    >
-      <div className="font-semibold mb-2 text-lg">Note Title</div>
-      <div className="mb-3">This is a sample note preview.</div>
-      <div className="flex justify-end text-xs">Edited 2 days ago</div>
-    </div>
+    <>
+      {notesArr.map(({ currDate, title, description }) => (
+        <div
+          className={`p-6 rounded shadow hover:shadow-lg transition cursor-pointer ${
+            darkTheme
+              ? "!bg-gray-900 text-gray-200"
+              : "!bg-gray-200 !text-gray-900"
+          }`}
+        >
+          <div className="font-semibold mb-2 text-lg">{title}</div>
+          <div className="mb-3">{description}</div>
+          <div className="flex justify-between items-center">
+            <div className="flex justify-start text-xs text-red-500">
+              <FontAwesomeIcon icon={faMinus} />
+            </div>
+            <div className="flex justify-end text-xs">
+              {differenceInDays(new Date(), currDate) < 1
+                ? `Edited ${differenceInMinutes(
+                    new Date(),
+                    currDate
+                  )} minutes ago.`
+                : `Edited ${differenceInDays(new Date(), currDate)} days ago.`}
+            </div>
+          </div>
+        </div>
+      ))}
+    </>
   );
 }

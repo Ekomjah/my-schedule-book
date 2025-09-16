@@ -9,6 +9,8 @@ export default function TodoModal({
   setLargeArr,
   asideTab,
   largeArr,
+  notesArr,
+  setNotesArr,
 }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -24,23 +26,14 @@ export default function TodoModal({
       this.checked = false;
     }
   }
-  function objectSaver(e, title, description, dueDate, priority) {
+  function objectSaver(e, title, description, dueDate = "", priority = "") {
     e.preventDefault();
-
     if (
       title &&
       description &&
       (isFuture(dueDate) || isToday(dueDate)) &&
-      priority &&
       largeArr.find((item) => item.title === title) === undefined
     ) {
-      let myObject = new ObjCreate(title, description, dueDate, priority);
-      setLargeArr((prev) => [...prev, myObject]);
-      setTitle("");
-      setDescription("");
-      setPriority("low");
-      setDueDate("");
-      setIsClicked(!isClicked);
     } else if (!(isFuture(dueDate) || isToday(dueDate))) {
       alert("Fill a current or future date!");
     } else {
@@ -48,6 +41,20 @@ export default function TodoModal({
     }
     return;
   }
+  function notesObjSaver(e, title, desc) {
+    e.preventDefault();
+    if (title && description) {
+      let myObject = new ObjCreate(title, description);
+      setNotesArr((prev) => [...prev, myObject]);
+      setTitle("");
+      setDescription("");
+      setIsClicked(!isClicked);
+    } else {
+      alert("Fill all the fields with unique values!");
+    }
+    return;
+  }
+
   return (
     <div
       className="modal-container"
@@ -63,8 +70,9 @@ export default function TodoModal({
         </h2>
         <form
           onSubmit={(e) => {
-            objectSaver(e, title, description, dueDate, priority);
-            // clearAllInputs();
+            tab === "todos"
+              ? objectSaver(e, title, description, dueDate, priority)
+              : notesObjSaver(e, title, description);
           }}
           className="flex flex-col gap-2 rounded-2xl p-3"
         >
@@ -156,5 +164,3 @@ export default function TodoModal({
     </div>
   );
 }
-
-
