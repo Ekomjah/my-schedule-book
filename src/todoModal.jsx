@@ -9,6 +9,13 @@ export default function TodoModal({
   setLargeArr,
   asideTab,
 }) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  function clearAllInputs() {}
+  {
+  }
+
   class ObjCreate {
     constructor(title, description, dueDate = "", priority = "") {
       this.currDate = new Date();
@@ -31,22 +38,17 @@ export default function TodoModal({
     ) {
       let myObject = new ObjCreate(title, description, dueDate, priority);
       setLargeArr((prev) => [...prev, myObject]);
-    } else if (isFuture(dueDate) || isToday(dueDate)) {
+    } else if (!(isFuture(dueDate) || isToday(dueDate))) {
       alert("Fill a current or future date!");
     } else {
       alert("Fill all the fields!");
     }
+    setTitle("");
+    setDescription("");
+    setPriority("low");
+    setDueDate("");
+    return;
   }
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  // function clearAllInputs() {}
-  // {
-  //   setTitle("");
-  //   setDescription("");
-  //   setPriority("low");
-  //   setDueDate("");
-  // }
   return (
     <div
       className="modal-container"
