@@ -116,7 +116,7 @@ export default function TodoEl({
             return (
               <li
                 key={currDate}
-                className={`flex justify-between items-center gap-3 p-4 ${
+                className={`flex justify-around items-center p-4 ${
                   darkTheme
                     ? "!bg-gray-900 !text-gray-200"
                     : "!text-gray-900 !bg-gray-200"
@@ -156,7 +156,6 @@ export default function TodoEl({
                       >
                         {title}
                       </h2>
-                      <p>{description}</p>
                       <span
                         className={`${
                           priority === "low"
@@ -170,6 +169,7 @@ export default function TodoEl({
                       </span>
                     </div>
 
+                    <p>{description}</p>
                     {asideTab === "overdue" ? (
                       <div className="text-red-500">
                         {overdueDays} days overdue!
@@ -215,7 +215,7 @@ export default function TodoEl({
               onSubmit={(e) => {
                 setLargeArr((prev) =>
                   largeArr.map((item, i) => {
-                    if (i === index) {
+                    if (item.currDate === currDate) {
                       return {
                         currDate: currDate,
                         title: title,
