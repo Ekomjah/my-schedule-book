@@ -63,19 +63,23 @@ export default function Aside({
         />
         <button
           onClick={() => {
-            setLargeArr((prev) => [
-              ...prev,
-              {
-                currDate: new Date(),
-                title: myVal,
-                description: "",
-                dueDate: addDays(new Date(), 5),
-                priority: "low",
-                savedTab: "main",
-                checked: false,
-              },
-            ]);
-            setMyVal("");
+            if (myVal) {
+              setLargeArr((prev) => [
+                ...prev,
+                {
+                  currDate: new Date(),
+                  title: myVal,
+                  description: "",
+                  dueDate: addDays(new Date(), 5),
+                  priority: "low",
+                  savedTab: "main",
+                  checked: false,
+                },
+              ]);
+              setMyVal("");
+            } else {
+              alert("Fill in information for your quick todo!");
+            }
           }}
           className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
         >
