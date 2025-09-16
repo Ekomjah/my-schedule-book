@@ -20,9 +20,16 @@ export default function NotesEl({ darkTheme, notesArr, setNotesArr }) {
           <div className="font-semibold mb-2 text-lg">{title}</div>
           <div className="mb-3">{description}</div>
           <div className="flex justify-between items-center">
-            <div className="flex justify-start text-xs text-red-500">
+            <button
+              onClick={(e) =>
+                setNotesArr(
+                  notesArr.filter((myItem) => myItem.currDate !== currDate)
+                )
+              }
+              className="flex justify-start text-xs text-red-500"
+            >
               <FontAwesomeIcon icon={faMinus} />
-            </div>
+            </button>
             <div className="flex justify-end text-xs">
               {differenceInDays(new Date(), currDate) < 1
                 ? `Edited ${differenceInMinutes(
