@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Notes({ darkTheme, onClick, notesArr, setNotesArr }) {
   const [isClicked, setIsClicked] = useState(false);
+  const [myDesc, setMyDesc] = useState("");
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
@@ -36,6 +37,8 @@ export default function Notes({ darkTheme, onClick, notesArr, setNotesArr }) {
         style={{ display: !isClicked && "none" }}
       >
         <textarea
+          value={myDesc}
+          onChange={(e) => setMyDesc(e.target.value)}
           className={`${
             darkTheme
               ? "bg-gray-50 text-gray-700"
@@ -50,7 +53,23 @@ export default function Notes({ darkTheme, onClick, notesArr, setNotesArr }) {
         >
           Remove
         </button>
-        <button>Add</button>
+        <button
+          className="bg-black"
+          onClick={() => {
+            setNotesArr((prev) => [
+              ...prev,
+              {
+                currDate: new Date(),
+                title: "",
+                description: myDesc,
+              },
+            ]);
+            setMyDesc("");
+            setIsClicked(!isClicked);
+          }}
+        >
+          Add
+        </button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <NotesEl
@@ -58,7 +77,6 @@ export default function Notes({ darkTheme, onClick, notesArr, setNotesArr }) {
           notesArr={notesArr}
           setNotesArr={setNotesArr}
         />
-        
 
         {/* <div className="bg-white p-6 rounded shadow hover:shadow-lg transition cursor-pointer">
           <div className="font-semibold mb-2 text-lg">Another Note</div>
