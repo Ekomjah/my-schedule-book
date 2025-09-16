@@ -40,7 +40,7 @@ export default function Aside({
     <aside
       className={`${
         darkTheme ? "!bg-gray-900" : "bg-gray-200"
-      } overflow-y-auto md:overflow-y-hidden flex z-1 flex-col md:relative md:min-h-[calc(100vh-70px)] md:h-auto max-w-xs p-6 fixed left-0 top-19 h-[calc(100vh-70px)]`}
+      } overflow-y-auto md:overflow-y-hidden flex z-9 flex-col md:relative md:min-h-[calc(100vh-70px)] md:h-auto max-w-xs p-6 fixed left-0 top-19 h-[calc(100vh-70px)]`}
     >
       <div className="mb-3 flex gap-3 justify-center items-center">
         <input

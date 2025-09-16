@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { isFuture, isToday } from "date-fns";
 export default function TodoModal({
   isClicked,
   tab,
@@ -19,10 +20,22 @@ export default function TodoModal({
       this.checked = false;
     }
   }
-  function objectSaver(title, description, dueDate, priority) {
-    let myObject = new ObjCreate(title, description, dueDate, priority);
-    console.log(myObject);
-    setLargeArr((prev) => [...prev, myObject]);
+  function objectSaver(e, title, description, dueDate, priority) {
+    e.preventDefault();
+
+    if (
+      title &&
+      description &&
+      (isFuture(dueDate) || isToday(dueDate)) &&
+      priority
+    ) {
+      let myObject = new ObjCreate(title, description, dueDate, priority);
+      setLargeArr((prev) => [...prev, myObject]);
+    } else if (isFuture(dueDate) || isToday(dueDate)) {
+      alert("Fill a current or future date!");
+    } else {
+      alert("Fill all the fields!");
+    }
   }
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -47,7 +60,14 @@ export default function TodoModal({
         <h2 className="text-red-700 font-medium">
           Kindly fill in the information below:
         </h2>
-        <form className="flex flex-col gap-2 rounded-2xl p-3">
+        <form
+          onSubmit={(e) => {
+            objectSaver(e, title, description, dueDate, priority);
+            setIsClicked(!isClicked);
+            // clearAllInputs();
+          }}
+          className="flex flex-col gap-2 rounded-2xl p-3"
+        >
           <label htmlFor="title" className="flex flex-col items-start">
             <span>Title:</span>
             <input
@@ -57,6 +77,7 @@ export default function TodoModal({
               placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
           </label>
           <label
@@ -70,6 +91,7 @@ export default function TodoModal({
               className="p-2 w-full border-2 border-blue-400 rounded-xl !text-white  bg-transparent"
               placeholder="This is all about me..."
               value={description}
+              required
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </label>
@@ -86,6 +108,7 @@ export default function TodoModal({
                   className="p-2 w-full border-2 border-blue-400 rounded-xl !text-white  bg-transparent"
                   placeholder="dueDate"
                   value={dueDate}
+                  required
                   onChange={(e) => setDueDate(e.target.value)}
                 />
               </label>
@@ -93,6 +116,7 @@ export default function TodoModal({
               <label className="flex flex-col items-start max-w-full">
                 <span>Select Task Priority:</span>
                 <select
+                  required
                   onChange={(e) => setPriority(e.target.value)}
                   className="p-2 w-full border-2 border-blue-400 rounded-xl !text-white  bg-transparent"
                 >
@@ -123,11 +147,6 @@ export default function TodoModal({
             <button
               type="submit"
               className="!text-xl !bg-transparent !p-0 text-blue-400"
-              onClick={() => {
-                objectSaver(title, description, dueDate, priority);
-                setIsClicked(!isClicked);
-                // clearAllInputs();
-              }}
             >
               Save
             </button>

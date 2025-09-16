@@ -68,8 +68,12 @@ export default function TodoEl({
                 </h2>
                 <span
                   className={`${
-                    darkTheme ? " !text-green-500" : "!text-green-900 "
-                  }  ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
+                    priority === "low"
+                      ? "!bg-green-200 !text-green-900"
+                      : priority === "medium"
+                      ? "!bg-orange-100 !text-orange-500"
+                      : "bg-red-200 text-red-500"
+                  } ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
                 >
                   {priority}
                 </span>
@@ -121,8 +125,12 @@ export default function TodoEl({
                 </h2>
                 <span
                   className={`${
-                    darkTheme ? " !text-green-500" : "!text-green-900 "
-                  }  ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
+                    priority === "low"
+                      ? "!bg-green-200 !text-green-900"
+                      : priority === "medium"
+                      ? "!bg-orange-100 !text-orange-500"
+                      : "bg-red-200 text-red-500"
+                  } ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
                 >
                   {priority}
                 </span>
@@ -163,13 +171,6 @@ export default function TodoEl({
                 >
                   {title}
                 </h2>
-                <span
-                  className={`${
-                    darkTheme ? " !text-green-500" : "!text-green-900 "
-                  }  ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
-                >
-                  {priority}
-                </span>
               </div>
 
               <div>Due Date: {format(dueDate, "dd MMMM yyyy")}</div>
@@ -220,8 +221,12 @@ export default function TodoEl({
                 </h2>
                 <span
                   className={`${
-                    darkTheme ? " !text-green-500" : "!text-green-900 "
-                  }  ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
+                    priority === "low"
+                      ? "!bg-green-200 !text-green-900"
+                      : priority === "medium"
+                      ? "!bg-orange-100 !text-orange-500"
+                      : "bg-red-200 text-red-500"
+                  } ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
                 >
                   {priority}
                 </span>

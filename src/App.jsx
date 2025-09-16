@@ -16,8 +16,8 @@ export default function App() {
   const [asideTab, setAsideTab] = useState("main");
   const [tasksLength, setTasksLength] = useState(200);
   const [largeArr, setLargeArr] = useState(() => {
-    return JSON.parse(localStorage.getItem("todoAieir"))
-      ? JSON.parse(localStorage.getItem("todoAieir"))
+    return JSON.parse(localStorage.getItem("todos"))
+      ? JSON.parse(localStorage.getItem("todos"))
       : [];
   });
   const [priority, setPriority] = useState("low");
@@ -36,7 +36,7 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem("As-project", JSON.stringify(liVal));
-    localStorage.setItem("todoAieir", JSON.stringify(largeArr));
+    localStorage.setItem("todos", JSON.stringify(largeArr));
     console.log("Warning: I am changing yet again to: ", largeArr);
   }, [liVal, largeArr]);
 
