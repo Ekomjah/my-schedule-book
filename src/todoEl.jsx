@@ -106,14 +106,6 @@ export default function TodoEl({
                 : "!text-gray-900 !bg-gray-200"
             }  rounded shadow hover:shadow-md transition`}
           >
-            <input
-              type="checkbox"
-              checked={checked}
-              onChange={(e) => {
-                checkedEl(currDate, e.target.checked);
-              }}
-              className="accent-blue-600 w-5 h-5"
-            />
             <div className="flex flex-col justify-center items-center">
               <div className={`flex gap-4 p-2 items-center`}>
                 <h2
@@ -136,7 +128,9 @@ export default function TodoEl({
                 </span>
               </div>
 
-              <div>Due Date: {format(dueDate, "dd MMMM yyyy")}</div>
+              <div className="text-red-500">
+                {differenceInDays(date, dueDate)} days overdue!
+              </div>
             </div>
           </li>
         )
@@ -178,9 +172,44 @@ export default function TodoEl({
           </li>
         )
       );
-    }
-    // else if(currentTab === "pending") {}
-    else {
+    } else if (asideTab === "pending") {
+      renderedArr = largeArr.filter(({ checked }) => checked === false);
+      console.log(renderedArr);
+      setTasksLength(`${renderedArr.length} tasks`);
+      return renderedArr.map(
+        ({
+          currDate,
+          title,
+          description,
+          dueDate,
+          priority,
+          savedTab,
+          checked,
+        }) => (
+          <li
+            className={`flex justify-center items-center gap-3 p-4 ${
+              darkTheme
+                ? "!bg-gray-900 !text-gray-200"
+                : "!text-gray-900 !bg-gray-200"
+            }  rounded shadow hover:shadow-md transition`}
+          >
+            <div className="flex flex-col justify-center items-center">
+              <div className={`flex gap-4 p-2 items-center`}>
+                <h2
+                  className={`font-bold ${
+                    darkTheme ? " !text-gray-300" : "!text-gray-900 "
+                  }`}
+                >
+                  {title}
+                </h2>
+              </div>
+
+              <div>Due Date: {format(dueDate, "dd MMMM yyyy")}</div>
+            </div>
+          </li>
+        )
+      );
+    } else {
       renderedArr = largeArr
         .sort((a, b) => compareAsc(a.dueDate, b.dueDate))
         .filter(({ savedTab }) => savedTab === asideTab);
