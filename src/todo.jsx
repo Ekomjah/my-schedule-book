@@ -41,6 +41,7 @@ export default function TodoApp({
           asideTab={asideTab}
           setTasksLength={setTasksLength}
           setLargeArr={setLargeArr}
+          onClick={onClick}
         />
       </ul>
     </section>

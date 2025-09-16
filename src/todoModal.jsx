@@ -8,14 +8,11 @@ export default function TodoModal({
   priority,
   setLargeArr,
   asideTab,
+  largeArr,
 }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
-  function clearAllInputs() {}
-  {
-  }
-
   class ObjCreate {
     constructor(title, description, dueDate = "", priority = "") {
       this.currDate = new Date();
@@ -34,19 +31,21 @@ export default function TodoModal({
       title &&
       description &&
       (isFuture(dueDate) || isToday(dueDate)) &&
-      priority
+      priority &&
+      largeArr.find((item) => item.title === title) === undefined
     ) {
       let myObject = new ObjCreate(title, description, dueDate, priority);
       setLargeArr((prev) => [...prev, myObject]);
+      setTitle("");
+      setDescription("");
+      setPriority("low");
+      setDueDate("");
+      setIsClicked(!isClicked);
     } else if (!(isFuture(dueDate) || isToday(dueDate))) {
       alert("Fill a current or future date!");
     } else {
-      alert("Fill all the fields!");
+      alert("Fill all the fields with unique values!");
     }
-    setTitle("");
-    setDescription("");
-    setPriority("low");
-    setDueDate("");
     return;
   }
   return (
@@ -65,7 +64,6 @@ export default function TodoModal({
         <form
           onSubmit={(e) => {
             objectSaver(e, title, description, dueDate, priority);
-            setIsClicked(!isClicked);
             // clearAllInputs();
           }}
           className="flex flex-col gap-2 rounded-2xl p-3"

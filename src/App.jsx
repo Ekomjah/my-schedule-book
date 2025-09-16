@@ -158,6 +158,7 @@ export default function App() {
         priority={priority}
         setLargeArr={setLargeArr}
         asideTab={asideTab}
+        largeArr={largeArr}
       />
       <ChecklistModal
         isClicked={isChecklistModalClicked}

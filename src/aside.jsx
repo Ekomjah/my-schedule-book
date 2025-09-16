@@ -1,3 +1,12 @@
+import {
+  format,
+  addDays,
+  subDays,
+  differenceInDays,
+  compareAsc,
+  compareDesc,
+} from "date-fns";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInbox } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -5,6 +14,7 @@ import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faAlarmClock } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function Aside({
   tab,
@@ -21,6 +31,7 @@ export default function Aside({
   largeArr,
   setLargeArr,
 }) {
+  const [myVal, setMyVal] = useState("");
   function addLi(item) {
     if (
       item &&
@@ -47,8 +58,27 @@ export default function Aside({
         <input
           className="flex-2 p-2 rounded border bg-gray-100 text-red-950"
           placeholder={tab === "todos" ? "Quick add to-do" : "Quick add note"}
+          value={myVal}
+          onChange={(e) => setMyVal(e.target.value)}
         />
-        <button className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition">
+        <button
+          onClick={() => {
+            setLargeArr((prev) => [
+              ...prev,
+              {
+                currDate: new Date(),
+                title: myVal,
+                description: "",
+                dueDate: addDays(new Date(), 5),
+                priority: "low",
+                savedTab: "main",
+                checked: false,
+              },
+            ]);
+            setMyVal("");
+          }}
+          className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 transition"
+        >
           Add
         </button>
       </div>
