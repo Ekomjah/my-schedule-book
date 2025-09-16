@@ -7,6 +7,9 @@ import {
   compareDesc,
 } from "date-fns";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+
 export default function TodoEl({
   darkTheme,
   largeArr,
@@ -81,6 +84,16 @@ export default function TodoEl({
 
               <div>Due Date: {format(dueDate, "dd MMMM yyyy")}</div>
             </div>
+            <button
+              className="!bg-transparent text-red-500 !items-end"
+              onClick={() =>
+                setLargeArr(
+                  largeArr.filter((myItem) => myItem.currDate !== currDate)
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
           </li>
         )
       );
@@ -132,6 +145,16 @@ export default function TodoEl({
                 {differenceInDays(date, dueDate)} days overdue!
               </div>
             </div>
+            <button
+              className="!bg-transparent text-red-500 !items-end"
+              onClick={() =>
+                setLargeArr(
+                  largeArr.filter((myItem) => myItem.currDate !== currDate)
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
           </li>
         )
       );
@@ -169,6 +192,16 @@ export default function TodoEl({
 
               <div>Due Date: {format(dueDate, "dd MMMM yyyy")}</div>
             </div>
+            <button
+              className="!bg-transparent text-red-500 !items-end"
+              onClick={() =>
+                setLargeArr(
+                  largeArr.filter((myItem) => myItem.currDate !== currDate)
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
           </li>
         )
       );
@@ -206,6 +239,16 @@ export default function TodoEl({
 
               <div>Due Date: {format(dueDate, "dd MMMM yyyy")}</div>
             </div>
+            <button
+              className="!bg-transparent text-red-500 !items-end"
+              onClick={() =>
+                setLargeArr(
+                  largeArr.filter((myItem) => myItem.currDate !== currDate)
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
           </li>
         )
       );
@@ -263,6 +306,16 @@ export default function TodoEl({
 
               <div>Due Date: {format(dueDate, "dd MMMM yyyy")}</div>
             </div>
+            <button
+              className="!bg-transparent text-red-500 !items-end"
+              onClick={() =>
+                setLargeArr(
+                  largeArr.filter((myItem) => myItem.currDate !== currDate)
+                )
+              }
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
           </li>
         )
       );
