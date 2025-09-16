@@ -153,7 +153,7 @@ export default function TodoEl({
               >
                 <div
                   className="flex flex-col 
-                 justify-center items-center cols"
+                 justify-center items-center cols gap-3"
                 >
                   <div className={`flex justify-around gap-2 p-2 items-center`}>
                     <span
@@ -195,7 +195,9 @@ export default function TodoEl({
                       Due Date: {format(due, "dd MMMM yyyy")}
                     </div>
                   ) : (
-                    <div>Due Date: {format(due, "dd MMMM yyyy")}</div>
+                    <div className="text-green-400">
+                      Due Date: {format(due, "dd MMMM yyyy")}
+                    </div>
                   )}
                 </div>
               </button>
