@@ -9,6 +9,7 @@ export default function TodoApp({
   asideTab,
   setTasksLength,
   tasksLength,
+  setLargeArr,
 }) {
   return (
     <section>
@@ -39,6 +40,7 @@ export default function TodoApp({
           largeArr={largeArr}
           asideTab={asideTab}
           setTasksLength={setTasksLength}
+          setLargeArr={setLargeArr}
         />
       </ul>
     </section>

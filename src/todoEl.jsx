@@ -12,8 +12,21 @@ export default function TodoEl({
   largeArr,
   asideTab,
   setTasksLength,
+  setLargeArr,
 }) {
   const date = new Date();
+  function checkedEl(todoId, checkedStatus) {
+    setLargeArr(
+      largeArr.map((item) => {
+        if (item.currDate === todoId) {
+          return { ...item, checked: checkedStatus };
+        } else {
+          return item;
+        }
+      })
+    );
+  }
+
   function render() {
     let renderedArr;
     if (asideTab === "all") {
@@ -39,7 +52,9 @@ export default function TodoEl({
             <input
               type="checkbox"
               checked={checked}
-              onChange={(e) => (checked = e.target.checked)}
+              onChange={(e) => {
+                checkedEl(currDate, e.target.checked);
+              }}
               className="accent-blue-600 w-5 h-5"
             />
             <div className="flex flex-col justify-center items-center">
@@ -90,7 +105,9 @@ export default function TodoEl({
             <input
               type="checkbox"
               checked={checked}
-              onChange={(e) => (checked = e.target.checked)}
+              onChange={(e) => {
+                checkedEl(currDate, e.target.checked);
+              }}
               className="accent-blue-600 w-5 h-5"
             />
             <div className="flex flex-col justify-center items-center">
@@ -187,7 +204,9 @@ export default function TodoEl({
             <input
               type="checkbox"
               checked={checked}
-              onChange={(e) => (checked = true)}
+              onChange={(e) => {
+                checkedEl(currDate, e.target.checked);
+              }}
               className="accent-blue-600 w-5 h-5"
             />
             <div className="flex flex-col justify-center items-center">
