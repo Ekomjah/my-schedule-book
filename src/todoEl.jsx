@@ -96,108 +96,114 @@ export default function TodoEl({
 
   return (
     <>
-      <ul className="space-y-3">
-        {renderedArr.map(
-          (
-            {
-              currDate,
-              title,
-              description,
-              dueDate,
-              priority,
-              savedTab,
-              checked,
-            },
-            index
-          ) => {
-            const due = toDate(dueDate);
-            const overdueDays = differenceInDays(today, due);
+      {renderedArr.map(
+        (
+          {
+            currDate,
+            title,
+            description,
+            dueDate,
+            priority,
+            savedTab,
+            checked,
+          },
+          index
+        ) => {
+          const due = toDate(dueDate);
+          const overdueDays = differenceInDays(today, due);
 
-            return (
-              <li
-                key={currDate}
-                className={`flex justify-around items-center p-4 ${
-                  darkTheme
-                    ? "!bg-gray-900 !text-gray-200"
-                    : "!text-gray-900 !bg-gray-200"
-                }  rounded shadow hover:shadow-md transition w-full`}
+          return (
+            <li
+              key={currDate}
+              className={`flex justify-around items-center p-4 gap-2 ${
+                darkTheme
+                  ? "!bg-gray-900 !text-gray-200"
+                  : "!text-gray-900 !bg-gray-200"
+              }  rounded shadow hover:shadow-md transition w-full`}
+            >
+              {asideTab !== "overdue" &&
+                asideTab !== "pending" &&
+                asideTab !== "completed" && (
+                  <input
+                    type="checkbox"
+                    checked={!!checked}
+                    onChange={(e) => {
+                      checkedEl(currDate, e.target.checked);
+                    }}
+                    className="accent-blue-600 w-5 h-5"
+                  />
+                )}
+
+              <button
+                type="button"
+                onClick={() => {
+                  finder(
+                    title,
+                    description,
+                    dueDate,
+                    priority,
+                    checked,
+                    savedTab,
+                    currDate,
+                    index
+                  );
+                  setShow(!show);
+                  className = "!bg-amber-50";
+                }}
               >
-                <input
-                  type="checkbox"
-                  checked={!!checked}
-                  onChange={(e) => {
-                    checkedEl(currDate, e.target.checked);
-                  }}
-                  className="accent-blue-600 w-5 h-5"
-                />
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    finder(
-                      title,
-                      description,
-                      dueDate,
-                      priority,
-                      checked,
-                      savedTab,
-                      currDate,
-                      index
-                    );
-                    setShow(!show);
-                  }}
+                <div
+                  className="flex flex-col 
+                 justify-center items-center cols"
                 >
-                  <div className="flex flex-col justify-center items-center">
-                    <div className={`flex gap-4 p-2 items-center`}>
-                      <h2
-                        className={`font-bold ${
-                          darkTheme ? " !text-gray-300" : "!text-gray-900 "
-                        }`}
-                      >
-                        {title}
-                      </h2>
-                      <span
-                        className={`${
-                          priority === "low"
-                            ? "!bg-green-200 !text-green-900"
-                            : priority === "medium"
-                            ? "!bg-orange-100 !text-orange-500"
-                            : "bg-red-200 text-red-500"
-                        } ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
-                      >
-                        {priority}
-                      </span>
-                    </div>
-
-                    <p>{description}</p>
-                    {asideTab === "overdue" ? (
-                      <div className="text-red-500">
-                        {overdueDays} days overdue!
-                      </div>
-                    ) : asideTab === "completed" ? (
-                      <div className="!line-through">
-                        Due Date: {format(due, "dd MMMM yyyy")}
-                      </div>
-                    ) : (
-                      <div>Due Date: {format(due, "dd MMMM yyyy")}</div>
-                    )}
+                  <div className={`flex justify-around gap-2 p-2 items-center`}>
+                    <span
+                      className={`flex-1 ${
+                        priority === "low"
+                          ? "!bg-green-200 !text-green-900"
+                          : priority === "medium"
+                          ? "!bg-orange-100 !text-orange-500"
+                          : "bg-red-200 text-red-500"
+                      } ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
+                    >
+                      {priority}
+                    </span>
+                    <h2
+                      className={`font-bold flex-10 ${
+                        darkTheme ? " !text-gray-300" : "!text-gray-900 "
+                      }`}
+                    >
+                      {title}
+                    </h2>
+                    <button
+                      className="!bg-transparent text-red-500 !items-end"
+                      onClick={(e) => {
+                        e.stopPropagation(); // prevent triggering the parent onClick
+                        handleDelete(currDate);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faMinus} />
+                    </button>
                   </div>
 
-                  <button
-                    className="!bg-transparent text-red-500 !items-end"
-                    onClick={(e) => {
-                      e.stopPropagation(); // prevent triggering the parent onClick
-                      handleDelete(currDate);
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faMinus} />
-                  </button>
-                </button>
-              </li>
-            );
-          }
-        )}
-      </ul>
+                  <p>{description}</p>
+                  {asideTab === "overdue" ? (
+                    <div className="text-red-500">
+                      {overdueDays} days overdue!
+                    </div>
+                  ) : asideTab === "completed" ? (
+                    <div className="!line-through">
+                      Due Date: {format(due, "dd MMMM yyyy")}
+                    </div>
+                  ) : (
+                    <div>Due Date: {format(due, "dd MMMM yyyy")}</div>
+                  )}
+                </div>
+              </button>
+            </li>
+          );
+        }
+      )}
+
       {show && (
         <div
           className="modal-container"

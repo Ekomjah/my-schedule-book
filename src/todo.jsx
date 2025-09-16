@@ -24,7 +24,7 @@ export default function TodoApp({
             asideTab !== "overdue" && (
               <button
                 onClick={onClick}
-                className="!bg-blue-400 !rounded-3xl !text-black !px-3 !py-4 !fixed !bottom-10 !right-8 hover:bg-blue-700 flex  items-center gap-2 transition"
+                className="!bg-blue-400 !rounded-3xl !text-black !px-3 !py-4 !fixed !bottom-10 !right-8 hover:!bg-blue-500 flex  items-center gap-2 transition-all duration-[2s] ease-in"
               >
                 <span>
                   <FontAwesomeIcon icon={faPlus} size="2x" />
