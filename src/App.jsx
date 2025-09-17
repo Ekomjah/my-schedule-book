@@ -87,12 +87,6 @@ export default function App() {
             <FontAwesomeIcon icon={faTableList} />
           </button>
           <button
-            className={`!text-xl md:!text-3xl !p-0 !bg-transparent rounded transition-colors duration-200`}
-            onClick={() => setTab("checklist")}
-          >
-            <FontAwesomeIcon icon={faList} />
-          </button>
-          <button
             className={`!text-xl md:!text-3xl !p-0 !bg-transparent rounded  transition-colors duration-200`}
             onClick={() => setTab("notes")}
           >
@@ -143,19 +137,12 @@ export default function App() {
               todoChecklistArr={todoChecklistArr}
               setTodoChecklistArr={setTodoChecklistArr}
             />
-          ) : tab === "notes" ? (
+          ) : (
             <Notes
               darkTheme={darkMode}
               onClick={() => setIsClicked(!isClicked)}
               notesArr={notesArr}
               setNotesArr={setNotesArr}
-            />
-          ) : (
-            <Checklist
-              darkTheme={darkMode}
-              onChecklistClick={() =>
-                setIsChecklistModalClicked(!isChecklistModalClicked)
-              }
             />
           )}
         </main>
@@ -173,10 +160,6 @@ export default function App() {
         setNotesArr={setNotesArr}
         todoChecklistArr={todoChecklistArr}
         setTodoChecklistArr={setTodoChecklistArr}
-      />
-      <ChecklistModal
-        isClicked={isChecklistModalClicked}
-        setIsClicked={setIsChecklistModalClicked}
       />
     </div>
   );
