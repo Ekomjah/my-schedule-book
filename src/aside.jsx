@@ -74,6 +74,7 @@ export default function Aside({
                   priority: "low",
                   savedTab: "main",
                   checked: false,
+                  elements: [],
                 },
               ]);
               setMyVal("");
