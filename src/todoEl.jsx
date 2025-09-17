@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { format, differenceInDays, compareAsc } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function TodoEl({
   darkTheme,
@@ -106,21 +106,7 @@ export default function TodoEl({
         if (item.currDate === currDate) {
           return {
             ...item,
-            elements: [
-              ...item.elements,
-              <label
-                htmlFor="description"
-                className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
-              >
-                <input type="checkbox" />
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  className="w-full px-1 !text-gray-900  bg-yellow-200 rounded-sm"
-                />
-              </label>,
-            ],
+            elements: [...item.elements, { text: "", checked: false }],
           };
         } else {
           return item;
@@ -166,84 +152,158 @@ export default function TodoEl({
                     onChange={(e) => {
                       checkedEl(currDate, e.target.checked);
                     }}
-                    className="accent-blue-600 w-5 h-5"
+                    className="accent-blue-600 flex-1 w-5 h-5"
                   />
                 )}
 
               <div
                 className="flex flex-col 
-                 justify-center items-center cols gap-1"
+                 justify-center items-center cols gap-1 flex-10"
               >
-                <button
-                  type="button"
-                  onClick={() => {
-                    finder(
-                      title,
-                      description,
-                      dueDate,
-                      priority,
-                      checked,
-                      savedTab,
-                      currDate,
-                      elements,
-                      index
-                    );
-                    setShow(!show);
-                    className = "!bg-amber-50";
-                  }}
+                <span
+                  className={`flex-1 ${
+                    priority === "low"
+                      ? "!bg-green-200 !text-green-900"
+                      : priority === "medium"
+                      ? "!bg-orange-100 !text-orange-500"
+                      : "bg-red-200 text-red-500"
+                  } ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
                 >
-                  <div className={`flex justify-around gap-2 p-2 items-center`}>
-                    <span
-                      className={`flex-1 ${
-                        priority === "low"
-                          ? "!bg-green-200 !text-green-900"
-                          : priority === "medium"
-                          ? "!bg-orange-100 !text-orange-500"
-                          : "bg-red-200 text-red-500"
-                      } ml-auto text-xs bg-green-200 text-green-700 px-2 py-0.5 rounded`}
-                    >
-                      {priority}
-                    </span>
-                    <h2
-                      className={`font-bold flex-10 ${
-                        darkTheme ? " !text-gray-300" : "!text-gray-900 "
-                      }`}
-                    >
-                      {title}
-                    </h2>
-                    <button
-                      className="!bg-transparent text-red-500 !items-end"
-                      onClick={(e) => {
-                        e.stopPropagation(); // prevent triggering the parent onClick
-                        handleDelete(currDate);
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faTrash} />
-                    </button>
-                  </div>
-
-                  <p>{description}</p>
-                  {asideTab === "overdue" ? (
-                    <div className="text-red-500">
-                      {overdueDays} days overdue!
-                    </div>
-                  ) : asideTab === "completed" ? (
-                    <div className="!line-through">
-                      Due Date: {format(due, "dd MMMM yyyy")}
-                    </div>
-                  ) : (
-                    <div className="text-green-400">
-                      Due Date: {format(due, "dd MMMM yyyy")}
-                    </div>
-                  )}
-                </button>
-                <div className="flex justify-between items-center">
-                  <div>Add a task</div>
-                  <button onClick={(e) => addList(e, currDate)}>+</button>
+                  {priority.toUpperCase()} priority
+                </span>
+                <div className={`flex justify-around gap-2 p-2 items-center`}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      finder(
+                        title,
+                        description,
+                        dueDate,
+                        priority,
+                        checked,
+                        savedTab,
+                        currDate,
+                        elements,
+                        index
+                      );
+                      setShow(!show);
+                      className = "!bg-amber-50";
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <h2
+                    className={`font-bold flex-10 ${
+                      darkTheme ? " !text-gray-300" : "!text-gray-900 "
+                    }`}
+                  >
+                    {title}
+                  </h2>
+                  <button
+                    className="!bg-transparent text-red-500 !items-end"
+                    onClick={(e) => {
+                      e.stopPropagation(); // prevent triggering the parent onClick
+                      handleDelete(currDate);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
                 </div>
-                {elements.map((item, ind) => (
-                  <div key={ind}>{item}</div>
-                ))}
+
+                <p>{description}</p>
+                {asideTab === "overdue" ? (
+                  <div className="text-red-500">
+                    {overdueDays} days overdue!
+                  </div>
+                ) : asideTab === "completed" ? (
+                  <div className="!line-through">
+                    Due Date: {format(due, "dd MMMM yyyy")}
+                  </div>
+                ) : (
+                  <div className="text-green-400">
+                    Due Date: {format(due, "dd MMMM yyyy")}
+                  </div>
+                )}
+                <div className="border-t-1  w-full flex justify-around items-center">
+                  <div>Add a Checklist</div>
+                  <button
+                    className="text-xl text-red-500"
+                    onClick={(e) => addList(e, currDate)}
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                  </button>
+                </div>
+                <div className="bg-blue-700 p-2 rounded-xl">
+                  {elements.map((el, ind) => (
+                    <label key={ind} className="flex gap-2 items-center">
+                      <input
+                        type="checkbox"
+                        checked={el.checked}
+                        onChange={(e) => {
+                          setLargeArr((prev) =>
+                            prev.map((item) => {
+                              if (item.currDate === currDate) {
+                                return {
+                                  ...item,
+                                  elements: item.elements.map((inner, i) =>
+                                    i === ind
+                                      ? { ...inner, checked: e.target.checked }
+                                      : inner
+                                  ),
+                                };
+                              } else {
+                                return item;
+                              }
+                            })
+                          );
+                        }}
+                      />
+                      <input
+                        type="text"
+                        value={el.text}
+                        className="bg-red-200 rounded-xl p-1 border-1 border-red-900"
+                        onChange={(e) => {
+                          setLargeArr((prev) =>
+                            prev.map((item) => {
+                              if (item.currDate === currDate) {
+                                return {
+                                  ...item,
+                                  elements: item.elements.map((inner, i) =>
+                                    i === ind
+                                      ? { ...inner, text: e.target.value }
+                                      : inner
+                                  ),
+                                };
+                              } else {
+                                return item;
+                              }
+                            })
+                          );
+                        }}
+                      />
+                      <button
+                        onClick={(e) => {
+                          setLargeArr((prev) =>
+                            prev.map((item) => {
+                              if (item.currDate === currDate) {
+                                return {
+                                  ...item,
+                                  elements: item.elements.filter(
+                                    (inner, i) => i !== ind
+                                  ),
+                                };
+                              } else {
+                                return item;
+                              }
+                            })
+                          );
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </label>
+                  ))}
+                </div>
               </div>
             </li>
           );
