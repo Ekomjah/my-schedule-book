@@ -108,6 +108,7 @@ export default function TodoModal({
               placeholder="This is all about me..."
               value={description}
               required
+              minLength={15}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </label>

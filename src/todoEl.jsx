@@ -261,7 +261,7 @@ export default function TodoEl({
                       <input
                         type="text"
                         value={el.text}
-                        className="bg-red-200 rounded-xl p-1 border-1 border-red-900"
+                        className="bg-red-200 w-[70%] text-black rounded-xl p-1 border-1 border-red-900"
                         onChange={(e) => {
                           setLargeArr((prev) =>
                             prev.map((item) => {
