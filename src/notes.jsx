@@ -77,23 +77,6 @@ export default function Notes({ darkTheme, onClick, notesArr, setNotesArr }) {
           notesArr={notesArr}
           setNotesArr={setNotesArr}
         />
-
-        {/* <div className="bg-white p-6 rounded shadow hover:shadow-lg transition cursor-pointer">
-          <div className="font-semibold mb-2 text-lg">Another Note</div>
-          <div className="text-gray-600 mb-3">Some more note content here.</div>
-          <div className="flex justify-end text-xs text-gray-400">
-            Edited 1 week ago
-          </div>
-        </div>
-        <div className="bg-white p-6 rounded shadow hover:shadow-lg transition cursor-pointer">
-          <div className="font-semibold mb-2 text-lg">Ideas</div>
-          <div className="text-gray-600 mb-3">
-            Brainstorm your next project here.
-          </div>
-          <div className="flex justify-end text-xs text-gray-400">
-            Edited just now
-          </div>
-        </div> */}
       </div>
     </section>
   );

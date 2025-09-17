@@ -10,6 +10,8 @@ export default function TodoApp({
   setTasksLength,
   tasksLength,
   setLargeArr,
+  todoChecklistArr,
+  setTodoChecklistArr,
 }) {
   return (
     <section>
@@ -42,6 +44,8 @@ export default function TodoApp({
           setTasksLength={setTasksLength}
           setLargeArr={setLargeArr}
           onClick={onClick}
+          todoChecklistArr={todoChecklistArr}
+          setTodoChecklistArr={setTodoChecklistArr}
         />
       </ul>
     </section>

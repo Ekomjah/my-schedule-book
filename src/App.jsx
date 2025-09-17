@@ -16,8 +16,8 @@ export default function App() {
   const [asideTab, setAsideTab] = useState("main");
   const [tasksLength, setTasksLength] = useState(200);
   const [largeArr, setLargeArr] = useState(() => {
-    return JSON.parse(localStorage.getItem("todo"))
-      ? JSON.parse(localStorage.getItem("todo"))
+    return JSON.parse(localStorage.getItem("to-doseing"))
+      ? JSON.parse(localStorage.getItem("to-doseing"))
       : [];
   });
   const [notesArr, setNotesArr] = useState(() => {
@@ -38,10 +38,11 @@ export default function App() {
   const [open, setOpen] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  const [todoChecklistArr, setTodoChecklistArr] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("As-project", JSON.stringify(liVal));
-    localStorage.setItem("todo", JSON.stringify(largeArr));
+    localStorage.setItem("to-doseing", JSON.stringify(largeArr));
     localStorage.setItem("noting", JSON.stringify(notesArr));
   }, [liVal, largeArr, notesArr]);
 
@@ -139,6 +140,8 @@ export default function App() {
               setTasksLength={setTasksLength}
               tasksLength={tasksLength}
               setLargeArr={setLargeArr}
+              todoChecklistArr={todoChecklistArr}
+              setTodoChecklistArr={setTodoChecklistArr}
             />
           ) : tab === "notes" ? (
             <Notes
@@ -168,6 +171,8 @@ export default function App() {
         largeArr={largeArr}
         notesArr={notesArr}
         setNotesArr={setNotesArr}
+        todoChecklistArr={todoChecklistArr}
+        setTodoChecklistArr={setTodoChecklistArr}
       />
       <ChecklistModal
         isClicked={isChecklistModalClicked}

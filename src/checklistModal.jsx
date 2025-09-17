@@ -5,12 +5,13 @@ export default function ChecklistModal({ isClicked, setIsClicked }) {
       htmlFor="description"
       className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
     >
-      <input type="checkbox" />
-      <textarea
+      <div>Task 1</div>
+      <input
+        type="text"
         name=""
         id=""
-        className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
-      ></textarea>
+        className="w-full px-1 border-0 !text-gray-900  bg-yellow-200 rounded-sm"
+      />
     </label>,
   ]);
   function addList(e) {
@@ -21,12 +22,13 @@ export default function ChecklistModal({ isClicked, setIsClicked }) {
         htmlFor="description"
         className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
       >
-        <input type="checkbox" />
-        <textarea
+        <div>Task {checklistArr.length + 1}</div>
+        <input
+          type="text"
           name=""
           id=""
-          className="w-full px-1 border-0 border-b-[7px] border-b-gray-500 !text-gray-900  bg-gray-100 rounded-sm"
-        ></textarea>
+          className="w-full px-1 !text-gray-900  bg-yellow-200 rounded-sm"
+        />
       </label>,
     ]);
   }
@@ -51,7 +53,7 @@ export default function ChecklistModal({ isClicked, setIsClicked }) {
             />
           </label>
           <div className="flex justify-between items-center">
-            <div>Add a checkbox</div>
+            <div>Add a task</div>
             <button onClick={(e) => addList(e)}>+</button>
           </div>
           {checklistArr.map((item, index) => (

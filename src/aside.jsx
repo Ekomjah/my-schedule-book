@@ -8,7 +8,7 @@ import {
 } from "date-fns";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus } from "@fortawesome/free-solid-svg-icons"; 
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faInbox } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faAlarmClock } from "@fortawesome/free-solid-svg-icons";
@@ -166,7 +166,7 @@ export default function Aside({
                   className="text-red-500 text-xl cursor-pointer"
                   onClick={() => removeItemFromProjects(liVal, item, index)}
                 >
-                  <FontAwesomeIcon icon={faMinus} />
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               </li>
             ))}

@@ -9,7 +9,6 @@ export default function TodoModal({
   setLargeArr,
   asideTab,
   largeArr,
-  notesArr,
   setNotesArr,
 }) {
   const [title, setTitle] = useState("");
@@ -24,8 +23,10 @@ export default function TodoModal({
       this.priority = priority;
       this.savedTab = asideTab;
       this.checked = false;
+      this.elements = [];
     }
   }
+
   function objectSaver(e, title, description, dueDate = "", priority = "") {
     e.preventDefault();
     if (
@@ -34,6 +35,13 @@ export default function TodoModal({
       (isFuture(dueDate) || isToday(dueDate)) &&
       largeArr.find((item) => item.title === title) === undefined
     ) {
+      let myObject = new ObjCreate(title, description, dueDate, priority);
+      setLargeArr((prev) => [...prev, myObject]);
+      setTitle("");
+      setDescription("");
+      setPriority("low");
+      setDueDate("");
+      setIsClicked(!isClicked);
     } else if (!(isFuture(dueDate) || isToday(dueDate))) {
       alert("Fill a current or future date!");
     } else {

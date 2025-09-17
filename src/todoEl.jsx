@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { format, differenceInDays, compareAsc } from "date-fns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function TodoEl({
   darkTheme,
@@ -10,6 +10,8 @@ export default function TodoEl({
   setTasksLength,
   setLargeArr,
   onClick,
+  todoChecklistArr,
+  setTodoChecklistArr,
 }) {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
@@ -20,6 +22,7 @@ export default function TodoEl({
   const [savedTab, setSavedTab] = useState("");
   const [currDate, setCurrDate] = useState("");
   const [index, setIndex] = useState("");
+  const [elements, setElements] = useState([]);
 
   const today = new Date();
 
@@ -82,6 +85,7 @@ export default function TodoEl({
     checked,
     savedTab,
     currDate,
+    elements,
     index
   ) {
     setTitle(title);
@@ -92,6 +96,37 @@ export default function TodoEl({
     setSavedTab(savedTab);
     setCurrDate(currDate);
     setIndex(index);
+    setElements(elements);
+  }
+
+  function addList(e, currDate) {
+    e.preventDefault();
+    setLargeArr((prev) =>
+      largeArr.map((item) => {
+        if (item.currDate === currDate) {
+          return {
+            ...item,
+            elements: [
+              ...item.elements,
+              <label
+                htmlFor="description"
+                className="flex bg-gray-500 gap-3 justify-between items-center p-2 rounded-xl max-w-full"
+              >
+                <input type="checkbox" />
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  className="w-full px-1 !text-gray-900  bg-yellow-200 rounded-sm"
+                />
+              </label>,
+            ],
+          };
+        } else {
+          return item;
+        }
+      })
+    );
   }
 
   return (
@@ -106,6 +141,7 @@ export default function TodoEl({
             priority,
             savedTab,
             checked,
+            elements,
           },
           index
         ) => {
@@ -134,26 +170,27 @@ export default function TodoEl({
                   />
                 )}
 
-              <button
-                type="button"
-                onClick={() => {
-                  finder(
-                    title,
-                    description,
-                    dueDate,
-                    priority,
-                    checked,
-                    savedTab,
-                    currDate,
-                    index
-                  );
-                  setShow(!show);
-                  className = "!bg-amber-50";
-                }}
+              <div
+                className="flex flex-col 
+                 justify-center items-center cols gap-1"
               >
-                <div
-                  className="flex flex-col 
-                 justify-center items-center cols gap-3"
+                <button
+                  type="button"
+                  onClick={() => {
+                    finder(
+                      title,
+                      description,
+                      dueDate,
+                      priority,
+                      checked,
+                      savedTab,
+                      currDate,
+                      elements,
+                      index
+                    );
+                    setShow(!show);
+                    className = "!bg-amber-50";
+                  }}
                 >
                   <div className={`flex justify-around gap-2 p-2 items-center`}>
                     <span
@@ -181,7 +218,7 @@ export default function TodoEl({
                         handleDelete(currDate);
                       }}
                     >
-                      <FontAwesomeIcon icon={faMinus} />
+                      <FontAwesomeIcon icon={faTrash} />
                     </button>
                   </div>
 
@@ -199,8 +236,15 @@ export default function TodoEl({
                       Due Date: {format(due, "dd MMMM yyyy")}
                     </div>
                   )}
+                </button>
+                <div className="flex justify-between items-center">
+                  <div>Add a task</div>
+                  <button onClick={(e) => addList(e, currDate)}>+</button>
                 </div>
-              </button>
+                {elements.map((item, ind) => (
+                  <div key={ind}>{item}</div>
+                ))}
+              </div>
             </li>
           );
         }
@@ -232,6 +276,7 @@ export default function TodoEl({
                         priority: priority,
                         savedTab: savedTab,
                         checked: checked,
+                        elements: elements,
                       };
                     } else {
                       return item;
@@ -322,7 +367,7 @@ export default function TodoEl({
                   type="submit"
                   className="!text-xl !bg-transparent !p-0 text-blue-400"
                 >
-                  Save
+                  Save Changes
                 </button>
               </div>
             </form>
