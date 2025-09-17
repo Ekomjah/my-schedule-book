@@ -5,8 +5,6 @@ import Todo from "./todo.jsx";
 import Notes from "./notes.jsx";
 import HamburgerIcon from "./hamburgerIcon.jsx";
 import TextModal from "./todoModal.jsx";
-import ChecklistModal from "./checklistModal.jsx";
-import Checklist from "./checklist.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import { faTableList } from "@fortawesome/free-solid-svg-icons";
